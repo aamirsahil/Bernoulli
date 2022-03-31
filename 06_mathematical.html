@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algebra</title>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: { inlineMath: [["\\(","\\)"]] } }); </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mathematical/mathematical.css">
+
+</head>
+<body>
+<div class="container-fluid">
+<!--    The Navigation Bar  -->
+
+<div class="row" id="navbar">
+    <div class="col-md-2 navbar"><a href="01_overview.html"><img id="start" src="tifr-logo-black.png" alt="dummy.jpg"></a></div>
+    <div class="col-md-2"><a href="02_reality.html"><img id="img1" src="images\navbar\navbar01.jpg" alt="dummy.jpg"><div class="content" id="text1"></div></a></div>
+    <div class="col-md-2"><a href="03_idealization.html"><img id="img2" src="images\navbar\navbar02.jpg" alt="dummy.jpg"><div class="content" id="text2"></div></a></div>
+    <div class="col-md-2"><a href="04_descretization.html"><img id="img3" src="images\navbar\navbar03.jpg" alt="dummy.jpg"><div class="content" id="text3"></div></a></div>
+    <div class="col-md-2"><a href="05_geometric2.html"><img id="img4" src="images\navbar\navbar04.jpg" alt="dummy.jpg"><div class="content" id="text4"></div></a></div>
+    <div class="col-md-2"><a href="#"><img id="selected"src="images\navbar\navbar05.jpg" alt="dummy.jpg"><div class="content" id="text5"></div></a></div>
+    
+    <!-- Progress Bar -->
+
+    <svg class="svgNav" width="100%" height="20px">
+        <path id="track" stroke-width="10"></path>
+    </svg>
+
+    <!-- Progress Bar(close) -->
+
+    <!-- NextBtn -->
+    <div class="btnNav" id="nextBtn">
+        <div class="arrow right"></div>
+    </div>
+    <!-- PrevBtn -->
+    <!-- <div class="btnNav" id="prevBtn">
+        <div class="arrow left"></div>
+    </div> -->
+
+</div>
+
+<!--    The Navigation Bar(close)  -->
+
+<!--    Main Body  -->
+    <div class="row" id="Main">
+        <div class="col-md-6" id="leftMain">
+<!--            Derivation  -->
+            <h1>Algebraic formulation</h1>
+            <p>
+                Work done is equal to change in mechanical energy,
+                $$ dW = dK + dU $$
+                <div class="step1">
+                    Implies,
+                    $$ P_1A_1dx_1 - P_2A_2dx_2 = (\frac{1}{2}\rho v^2_2dx_2A_2 - \frac{1}{2}\rho v^2_1dx_1A_1) 
+                    + (\rho gh_2dx_2A_2 - \rho gh_1dx_1A_1) $$
+                </div>
+                <div class="step2">
+                    From calculus we have(click to expand),
+                    <div class="expand">$$ (P_1 + \frac{1}{2}\rho v^2_1 + \rho gh_1)dx_1A_1 = 
+                        (P_2 + \frac{1}{2}\rho v^2_2 + \rho gh_2)dx_2A_2 $$</div>
+                </div>
+                <div class="step3">
+                    \( \text{since} \) $$ dx_1A_1 = dx_2A_2 = dV \text{ (incompressible fluid)} $$
+                </div>
+                <div class="heatEq">$$ P + \frac{1}{2}\rho v^2 + \rho gh = constant $$</div>
+            </p>
+
+            <div class="instru">
+                <div class="instruct">Drag slider derive to heat equation!</div>
+                <div class="slidecontainer">
+                    <input class="slider" type="range" min="0" max="4" value="0" step="1" autocomplete="off">
+                </div>
+            </div>
+<!--            Derivation(end)-->
+        </div>
+<!--        Derivation(close)  -->
+        <div class="col-md-6" id="rightMain">
+            $$ \frac{dT}{dx} = \frac{T(x+dx) - T(x)}{dx} $$
+            $$ \frac{d^2T}{dx^2} = \frac{(\frac{dT}{dx})_{x+dx} - (\frac{dT}{dx})_{x}}{dx} $$
+            $$ = \frac{(\frac{T(x+2dx) - T(x+dx)}{dx}) - (\frac{T(x+dx) - T(x)}{dx})}{dx} $$
+            $$ = \frac{T(x+2dx) - 2T(x+dx) + T(x)}{(dx)^2} $$
+            Putting \(x = x+dx\),
+            $$ \frac{d^2T}{dx^2} = \frac{T(x+dx) - 2T(x) + T(x-dx)}{(dx)^2} $$
+            $$ \therefore T(x+dx) - 2T(x) + T(x-dx) = (dx^2)\frac{d^2 T(x,t)}{dx^2} $$
+        </div>
+    </div>
+<!--    Main Body(close)  -->
+</div>
+</body>
+<script src="javascript\navbar.js"></script>
+<script src="javascript\mathematicalJS\mathematical.js"></script>
+<script>
+</script>
+</html>

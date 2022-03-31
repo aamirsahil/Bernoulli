@@ -1,0 +1,23 @@
+body {
+  overflow: hidden;
+  background-color: #e8eefa;
+  border: #e8eefa solid;
+  border-width:15px;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+#leftMain{
+  font-size:3vh;
+  background-color: aliceblue;
+  height: 100%;
+  box-shadow: 0px 0px 15px -1px black;
+}
+#rightMain{
+  height: 100%;
+}
+
+#Main{
+  height: 75vh;
+}

@@ -4,6 +4,6 @@
 #####################################################################################################
 You can find where to look for to change certain parameters of the pages in this file
 #####################################################################################################
-Goal : To present the derivation of 1D heat equation as an excercise in mathematical modeling
+Goal : To present the derivation of Bernoulli equation as an excercise in mathematical modeling
 
 

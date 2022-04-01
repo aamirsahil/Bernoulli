@@ -66,6 +66,10 @@ class Plane{
         this.wing.rotation.z = degToRad(rotZ);
         this.wing.scale.set(scale, scale, scale);
     }
+    wingViewRot(angle){
+        // angle = degToRad(angle);
+        this.wing.rotation.x = degToRad(angle);
+    }
 }
 let plane = new Plane();
 
@@ -184,7 +188,28 @@ function svgResize()
 window.addEventListener("load",svgResize());
 // window.addEventListener("resize",svgResize());
 
-
+//define the entire canvas(right side)
+var canvas = d3.select("#sliderWing")
+                .attr("width",10)
+                .attr("height",100)
+                .style("overflow","visible");
+//create the slider
+var slider = d3
+    .sliderLeft()
+    .min(50)
+    .max(130)
+    .height(130)
+    .ticks(5)
+    .default(90);
+//call slider
+canvas.append("g").attr("class","moveSlider")
+    .attr("transform", "translate( " + (Canvas_Width - 10) + " , " + (Canvas_Height/2 - 130/2) + " )")
+    .call(slider);
+//slider drag-right
+slider.on("onchange", (value)=>{
+    console.log(value);
+    plane.wingViewRot(value);
+});
 
 
 

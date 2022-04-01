@@ -89,3 +89,6 @@ li{
 #pointers{
     overflow: visible;
 }
+#sliderWing{
+    position: fixed;
+  }

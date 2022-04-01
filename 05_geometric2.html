@@ -26,7 +26,7 @@
     <div class="col-md-2"><a href="02_reality.html"><img id="img1" src="images\navbar\navbar01.jpg" alt="dummy.jpg"><div class="content" id="text1"></div></a></div>
     <div class="col-md-2"><a href="03_idealization.html"><img id="img2" src="images\navbar\navbar02.jpg" alt="dummy.jpg"><div class="content" id="text2"></div></a></div>
     <div class="col-md-2"><a href="04_descretization.html"><img id="img3" src="images\navbar\navbar03.jpg" alt="dummy.jpg"><div class="content" id="text3"></div></a></div>
-    <div class="col-md-2"><a href="#"><img id="selected" src="images\navbar\navbar04.jpg" alt="dummy.jpg"><div class="content" id="text4"></div></a></div>
+    <div class="col-md-2"><a href="05_geometric.html"><img id="selected" src="images\navbar\navbar04.jpg" alt="dummy.jpg"><div class="content" id="text4"></div></a></div>
     <div class="col-md-2"><a href="06_mathematical.html"><img id="img5" src="images\navbar\navbar05.jpg" alt="dummy.jpg"><div class="content" id="text5"></div></a></div>
     
     <!-- Progress Bar -->
@@ -56,8 +56,15 @@
 <!--            Explanation  -->
             <h1>Let us put the system on a mathematical grid !</h1>
             <ul>
-                <li>We have selected one section of the fluid.</li>
-                <li>The position of a mass point is denoted by \(x\) and its pressure by \(P\).</li>
+                <li>Since the fluid is incompressible we can assume that the internal energy of the selected section is a constant.</li>
+                <li>Then the work done \(dW\) changes kinetic enegy \(dT\) and gravitation potential energy \(dU\).</li>
+                <li>The yellow portion shows the discarded section and green the added section.</li>
+                <li>Hence $$
+                    dT = T(\text{green}) - T(\text{yellow}) $$
+                    $$
+                    dU = U(\text{green}) - U(\text{yellow})
+                    $$.</li>
+
             </ul>
 <!-- Explanation(close) -->
 <!-- switches -->
@@ -88,6 +95,12 @@
             <!-- slider -->
             <!-- Final and inital system -->
             <!-- Their difference -->
+            <div id="moreSteps2">
+                $$ U \propto \frac{1}{r} \text{ , separation between molecules} $$
+                $$ \text{Now , } r \propto n \text{ , number density} $$
+                $$ \text{And } n \propto \rho \text{ , density} $$
+                $$ \text{Hense, }\frac{\partial\rho}{\partial t} = 0 \text{ implies } U \text{ is constant} $$
+            </div>
         </div>
         <!-- Right(close) -->
     </div>

@@ -17,7 +17,7 @@ window.addEventListener("load", ()=>{
         "/06_mathematical.html",
     ];
     
-    let loc = window.location.pathname.replace("/heatEquation", "");
+    let loc = window.location.pathname.replace("/Bernoulli", "");
     let i =0;
     
     switch(loc){
@@ -59,7 +59,7 @@ var link = [
     "/06_mathematical.html",
     "/07_summary.html"
 ];
-var loc = window.location.pathname.replace("/heatEquation", "");
+var loc = window.location.pathname.replace("/Bernoulli", "");
 var linkIndex = link.indexOf(loc);
 d3.select("#nextBtn").on("mousedown", ()=>{
     window.location = link[linkIndex+1];

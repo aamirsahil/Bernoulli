@@ -61,7 +61,7 @@
             </ul>
 <!-- Explanation(close) -->
 <!-- switches -->
-            <div class="switches">
+            <!-- <div class="switches">
                 <div class="row">
                     <div class="column">
                         <div class="switch" id="velBt">Velocity</div>
@@ -76,12 +76,23 @@
                         <div class="switch" id="csBt">Pause</div>
                     </div>  
                 </div>
-            </div>
+            </div> -->
 <!-- switches(close) -->
         </div>
         <!-- Left(close) -->
         <!-- Right -->
         <div class="col-md-7">
+            <!-- clickables -->
+            <div class="params">
+                <input type="checkbox" id="velocity" autocomplete="off">
+                <label>Velocity</label>
+                <input type="checkbox" id="height" autocomplete="off">
+                <label>Height</label>
+                <input type="checkbox" id="force" autocomplete="off">
+                <label>Force</label>
+                <input type="checkbox" id="flow" autocomplete="off">
+                <label>Flow</label>
+            </div>
             <svg id="system"></svg>
             <!-- liquid -->
             <!-- particles(velocity) -->
@@ -90,21 +101,21 @@
             <table>
                 <tr>
                     <th>\(P_1\)</th>
-                    <td>0</td>
+                    <td id="p1">0</td>
                     <th>\(P_2\)</th>
-                    <td>0</td>
+                    <td id="p2">0</td>
                 </tr>
                 <tr>
                     <th>\(h_1\)</th>
-                    <td>0</td>
+                    <td id="h1">0</td>
                     <th>\(h_2\)</th>
-                    <td>0</td>
+                    <td id="h2">0</td>
                 </tr>
                 <tr>
                     <th>\(v_1\)</th>
-                    <td>0</td>
+                    <td id="v1">0</td>
                     <th>\(v_2\)</th>
-                    <td>0</td>
+                    <td id="v2">0</td>
                 </tr>
             </table>
         </div>

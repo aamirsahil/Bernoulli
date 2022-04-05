@@ -56,7 +56,8 @@
 <!--            Explanation  -->
             <h1>Let us put the system on a mathematical grid !</h1>
             <ul>
-                <li>Since the fluid is incompressible we can assume that the internal energy of the selected section is a constant.</li>
+                <li>Since the fluid is incompressible we can assume
+                     that the internal energy of the selected section is a constant.<span id="why">WHY?</span></li>
                 <li>Then the work done \(dW\) changes kinetic enegy \(dT\) and gravitation potential energy \(dU\).</li>
                 <li>The yellow portion shows the discarded section and green the added section.</li>
                 <li>Hence $$
@@ -68,7 +69,7 @@
             </ul>
 <!-- Explanation(close) -->
 <!-- switches -->
-            <div class="switches">
+            <!-- <div class="switches">
                 <div class="row">
                     <div class="column">
                         <div class="switch" id="velBt">Velocity</div>
@@ -83,12 +84,22 @@
                         <div class="switch" id="csBt">Pause</div>
                     </div>  
                 </div>
-            </div>
+            </div> -->
 <!-- switches(close) -->
         </div>
         <!-- Left(close) -->
         <!-- Right -->
         <div class="col-md-7">
+            <div class="params">
+                <input type="checkbox" id="velocity" autocomplete="off">
+                <label>Velocity</label>
+                <input type="checkbox" id="height" autocomplete="off">
+                <label>Height</label>
+                <input type="checkbox" id="force" autocomplete="off">
+                <label>Force</label>
+                <input type="checkbox" id="flow" autocomplete="off">
+                <label>Flow</label>
+            </div>
             <svg id="system"></svg>
             <!-- liquid -->
             <!-- particles(velocity) -->

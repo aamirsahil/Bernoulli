@@ -1,17 +1,16 @@
 //selected parameter
 var paraState = [false,false,false,false];//state of whats selected
-var paraBtn = ['velBt', 'pressBt', 'heightBt','csBt'];//button array
+var paraBtn = ['velocity', 'force', 'height','flow'];//button array
 let unselectColor = "rgba(99, 100, 116, 0.75)";//color of unselected button
 let selectColor = "#2531d8";//color of selected button
 //calls whenever any button is clcked
 for(let i=0; i<4; i++){
         d3.select("#" + paraBtn[i]).on('click', function(){
-                (paraState[i])?d3.select(this).style("background", unselectColor)
-                :d3.select(this).style("background", selectColor);
                 paraState[i] = !paraState[i];
                 setvisibility(i);
         });
 }
+//set the visibility of parameters on the graph
 function setvisibility(i){
         switch(i){
                 case 0:
@@ -95,18 +94,21 @@ function velocityPath(x0 = 0){
         }
 );
 }
+//create the data values foolowed by velocity
 function createDataVel(){
         let dataVel0 = x.map( (d) => ({x: d, y: (u(d,-0.3,5,1) + u(d,+0.3,8,0.6))/2}));
         let dataVel1 = x.map( (d) => ({x: d, y: ((u(d,-0.3,5,1) + u(d,+0.3,8,0.6))/2 + u(d,-0.3,5,1))/2}));
         let dataVel2 = x.map( (d) => ({x: d, y: ((u(d,-0.3,5,1) + u(d,+0.3,8,0.6))/2 + u(d,+0.3,8,0.6))/2}));
         return dataVel0.concat(dataVel1, dataVel2);
 }
+//create the selected section grey,yellow green
 function createSection(value = sliderStartPos, width = sectionWidth){
         let x1 = [...Array(width).keys()].map( d => (value + d*dist));
         let x2 = [...Array(width).keys()].map( d => (value + d*dist)).reverse();
         let xSection = x1.concat(x2);
         return xSection.map((d,i) => ({x: d, y: (i<width)?u(d,-0.3,5,1):u(d,+0.3,8,0.6)}));
 }
+//create the colored region of fluid
 function createPressSection(){
         let x1 = [...Array(totalNum).keys()].map( d => (d*dist) + startPos);
         let x2 = [...Array(totalNum).keys()].map( d => (d*dist) + startPos).reverse();
@@ -114,12 +116,13 @@ function createPressSection(){
         return xSection.map((d,i) => ({x: d, y: (i<totalNum)?u(d,-0.3,5,1):u(d,+0.3,8,0.6)}));
 }
 //x=position, y=height, u=y(x)
+//the graph values
 let totalNum = 201;
 let totalLen = 1;
 var startPos = 0.5;
-
+//slider section values
 let sliderStartPos = 0.53;
-let sliderEndPos = 0.56;
+let sliderEndPos = 0.57;
 let sliderWidth = totalLen - sectionWidthLen + startPos; 
 
 let dist = totalLen/(totalNum-1);
@@ -129,7 +132,6 @@ var dataUpper = x.map( (d) => ({x: d, y: u(d,+0.3,8,0.6)}));
 
 var dataVel = createDataVel();
 var bisect = d3.bisector(d => d).left;
-console.log(dataVel.slice(20,40));
 //create a section of pipe within x and x+t
 var sectionWidthLen = (1.4 - 0.5);
 var sectionWidth = parseInt(sectionWidthLen*totalNum/totalLen);
@@ -305,8 +307,8 @@ var slider = d3
     .min(sliderStartPos)
     .max(sliderEndPos)
     .width(widthScale(totalLen + startPos) - graphOffeset)
-    .ticks(4)
-    .step(0.01)
+    .ticks(2)
+    .step(0.02)
     .default(0);
 //call slider
 canvas.append("g").attr("class","moveSlider")
@@ -326,34 +328,23 @@ canvas.append("g")
 var lineBase = -0.60;
 var index = bisect(x,sliderStartPos);
 //stactic inital state
-var dataPointer4 = canvas.append("g")
-        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
-        .selectAll(".dataLine")
-        .data([{x1: dataVel.slice(0,totalNum)[index].x, y1: lineBase,
-        x2: dataVel.slice(0,totalNum)[index].x, y2: dataVel.slice(0,totalNum)[index].y}])
-        .enter()
-                .append("line")
-                .attr("class", "dataLine")
-                .attr("x1",(d) => (widthScale(d.x1))).attr("x2",(d) => (widthScale(d.x2)))
-                .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2))
-                .attr("fill","none")
-                .attr("stroke", "red")
-                .attr("stroke-width", 1)
-                .attr("stroke-dasharray",3);
-var dataPointer4 = canvas.append("g")
-        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
-        .selectAll(".dataLine")
-        .data([{x1: dataVel.slice(0,totalNum)[index + sectionWidth].x, y1: lineBase,
-        x2: dataVel.slice(0,totalNum)[index + sectionWidth].x, y2: dataVel.slice(0,totalNum)[index + sectionWidth].y}])
-        .enter()
-                .append("line")
-                .attr("class", "dataLine")
-                .attr("x1",(d) => (widthScale(d.x1) - 3)).attr("x2",(d) => (widthScale(d.x2) - 3))
-                .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2))
-                .attr("fill","none")
-                .attr("stroke", "red")
-                .attr("stroke-width", 1)
-                .attr("stroke-dasharray",3).style;
+//pointer(circle)
+var dataPointer1 = canvas.append("g")
+                .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+                .append("circle")
+                .attr("class", ".dataPointer")
+                .attr("cx",widthScale(dataVel.slice(0,totalNum)[index].x))
+                .attr("cy", heightScale(dataVel.slice(0,totalNum)[index].y)).attr("r", 6).attr("fill","none")
+                .attr("stroke", "black").attr("stroke-width",5);
+
+var dataPointer2 = canvas.append("g")
+                .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+                .append("circle")
+                .attr("class", ".dataPointer")
+                .attr("cx",widthScale(dataVel.slice(0,totalNum)[index + sectionWidth].x) - 3)
+                .attr("cy", heightScale(dataVel.slice(0,totalNum)[index + sectionWidth].y)).attr("r", 6).attr("fill","none")
+                .attr("stroke", "black").attr("stroke-width",5);
+
 var dataPointer3 = canvas.append("g")
                 .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
                 .append("circle")
@@ -361,6 +352,7 @@ var dataPointer3 = canvas.append("g")
                 .attr("cx",widthScale(dataVel.slice(0,totalNum)[index].x))
                 .attr("cy", heightScale(dataVel.slice(0,totalNum)[index].y)).attr("r", 6).attr("fill","none")
                 .attr("stroke", "red").attr("stroke-width",5);
+
 var dataPointer4 = canvas.append("g")
                 .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
                 .append("circle")
@@ -388,6 +380,34 @@ var dataLine1 = canvas.append("g")
                 .attr("stroke-width", 1)
                 .attr("stroke-dasharray",3);
 var dataLine2 = canvas.append("g")
+        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+        .selectAll(".dataLine")
+        .data([{x1: dataVel.slice(0,totalNum)[index + sectionWidth].x, y1: lineBase,
+        x2: dataVel.slice(0,totalNum)[index + sectionWidth].x, y2: dataVel.slice(0,totalNum)[index + sectionWidth].y}])
+        .enter()
+                .append("line")
+                .attr("class", "dataLine")
+                .attr("x1",(d) => (widthScale(d.x1) - 3)).attr("x2",(d) => (widthScale(d.x2) - 3))
+                .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2))
+                .attr("fill","none")
+                .attr("stroke", "black")
+                .attr("stroke-width", 1)
+                .attr("stroke-dasharray",3);
+var dataLine3 = canvas.append("g")
+        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+        .selectAll(".dataLine")
+        .data([{x1: dataVel.slice(0,totalNum)[index].x, y1: lineBase,
+        x2: dataVel.slice(0,totalNum)[index].x, y2: dataVel.slice(0,totalNum)[index].y}])
+        .enter()
+                .append("line")
+                .attr("class", "dataLine")
+                .attr("x1",(d) => (widthScale(d.x1))).attr("x2",(d) => (widthScale(d.x2)))
+                .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2))
+                .attr("fill","none")
+                .attr("stroke", "black")
+                .attr("stroke-width", 1)
+                .attr("stroke-dasharray",3);
+var dataLine4 = canvas.append("g")
         .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
         .selectAll(".dataLine")
         .data([{x1: dataVel.slice(0,totalNum)[index + sectionWidth].x, y1: lineBase,
@@ -436,30 +456,26 @@ var dataLine2dx = canvas.append("g")
                 .attr("stroke", "black")
                 .attr("stroke-width", 1)
                 .attr("stroke-dasharray",3);
-//pointer(circle)
-var dataPointer1 = canvas.append("g")
-                .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
-                .append("circle")
-                .attr("class", ".dataPointer")
-                .attr("cx",widthScale(dataVel.slice(0,totalNum)[index].x))
-                .attr("cy", heightScale(dataVel.slice(0,totalNum)[index].y)).attr("r", 6).attr("fill","none")
-                .attr("stroke", "black").attr("stroke-width",5);
-var dataPointer2 = canvas.append("g")
-                .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
-                .append("circle")
-                .attr("class", ".dataPointer")
-                .attr("cx",widthScale(dataVel.slice(0,totalNum)[index + sectionWidth].x) - 3)
-                .attr("cy", heightScale(dataVel.slice(0,totalNum)[index + sectionWidth].y)).attr("r", 6).attr("fill","none")
-                .attr("stroke", "black").attr("stroke-width",5);
+//the text on the graph
+var textDx1=null;
+var texth1 = null;
+var textm1 = null;
+var textDx2=null;
+var texth2 = null;
+var textm2 = null;
+
+
+
+
 
 //slider drag event
 var bisect = d3.bisector(d => d).left;
 
 function setValues(value){
         index = bisect(x,value);
-        indexPrev = bisect(x, value - 0.01);
+        indexPrev = bisect(x, value - 0.02);
         if(value > 0.53)
-            sliderStartPos = (value - 0.01);
+            sliderStartPos = (value - 0.02);
         else
             sliderStartPos = value;
 }
@@ -485,6 +501,7 @@ function setDataPointer(value){
         let prevInd = bisect(x, sliderStartPos);
         dataPointer3.attr("cx",widthScale(dataVel.slice(0,totalNum)[Math.min(prevInd, totalNum - 1)].x) - 3)
                 .attr("cy", heightScale(dataVel.slice(0,totalNum)[Math.min(prevInd, totalNum - 1)].y));
+        prevInd = bisect(x, sliderStartPos + sectionWidthLen);
         dataPointer4.attr("cx",widthScale(dataVel.slice(0,totalNum)[Math.min(prevInd, totalNum - 1)].x) - 3)
                 .attr("cy", heightScale(dataVel.slice(0,totalNum)[Math.min(prevInd, totalNum - 1)].y));
 }
@@ -517,7 +534,7 @@ function setDataLine(){
                 }])
                 .attr("x1",(d) => (widthScale(d.x1))).attr("x2",(d) => (widthScale(d.x2)))
                 .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2));
-
+        prevInd = bisect(x, sliderStartPos+ sectionWidthLen);
     dataLine4.data([{
                 x1: dataVel.slice(0,totalNum)[Math.min(prevInd, totalNum - 1)].x, 
                 y1: lineBase,

@@ -17,13 +17,13 @@ const loader = new THREE.GLTFLoader();
 
 class Plane{
     constructor(){
-        loader.load("../../models/airplane/scene.gltf", (gltf) => {
+        loader.load("../../Bernoulli/models/airplane/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(.008,.008,.008);
             gltf.scene.position.set(0, 2, 0);
             this.plane = gltf.scene;
         });
-        loader.load("../../models/wing/scene.gltf", (gltf) => {
+        loader.load("../../Bernoulli/models/wing/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(3.7,4.7,4.7);
             gltf.scene.position.set(-3.8, 0.3, 2.3);

@@ -457,14 +457,40 @@ var dataLine2dx = canvas.append("g")
                 .attr("stroke-width", 1)
                 .attr("stroke-dasharray",3);
 //the text on the graph
-var textDx1=null;
-var texth1 = null;
-var textm1 = null;
-var textDx2=null;
-var texth2 = null;
-var textm2 = null;
-
-
+var graphText = ["dx1","h1","m","dx2","h2","m"];
+var text = canvas.append("g")
+        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+        .selectAll(".graphText")
+        .data([0,1,2,3,4,5])
+        .enter()
+                .append("text")
+                .style("font-size", "1rem")
+                .attr("x", (d) =>
+                        (d<3)?widthScale(sliderStartPos):widthScale(sliderStartPos + sectionWidthLen)
+                )
+                .attr("y", function(d){
+                        let yPos = heightScale(-0.5);
+                        switch(d){
+                                case 0:
+                                case 3:
+                                        yPos = heightScale(-0.5);
+                                        break;
+                                case 1:
+                                case 4:
+                                        yPos = heightScale(-0.3);
+                                        break;
+                                case 2:
+                                        yPos = heightScale(dataVel.slice(0,totalNum)[index].y - 0.1);
+                                        break;
+                                case 5:
+                                        yPos = heightScale(dataVel.slice(0,totalNum)[bisect(x, sliderStartPos + sectionWidthLen)].y - 0.1);
+                                        break;
+                        }
+                        return yPos;
+                })
+                .attr("dy", ".35em")
+                .text( (d) => graphText[d])
+                .style("fill", "black").style("visibility","hidden");
 
 
 
@@ -478,6 +504,32 @@ function setValues(value){
             sliderStartPos = (value - 0.02);
         else
             sliderStartPos = value;
+}
+function setText(value){
+        text.data([0,1,2,3,4,5])
+                .attr("x", (d) =>
+                (d<3)?widthScale(sliderStartPos):widthScale(sliderStartPos + sectionWidthLen))
+                .attr("y", function(d){
+                        let yPos = heightScale(-0.5);
+                        switch(d){
+                                case 0:
+                                case 3:
+                                        yPos = heightScale(-0.5);
+                                        break;
+                                case 1:
+                                case 4:
+                                        yPos = heightScale(-0.3);
+                                        break;
+                                case 2:
+                                        yPos = heightScale(dataVel.slice(0,totalNum)[index].y - 0.1);
+                                        break;
+                                case 5:
+                                        yPos = heightScale(dataVel.slice(0,totalNum)[bisect(x, sliderStartPos + sectionWidthLen)].y - 0.1);
+                                        break;
+                        }
+                        return yPos;
+                })
+                .style("visibility",(value == 0.53)?"hidden":"visible");
 }
 function setSection(value){
         dataSection = createSection(value);
@@ -570,6 +622,7 @@ slider.on("onchange", (value)=>{
         setDataPointer();
         setDataLine();
         setDispLine(value);
+        setText(value);
 });
 function animate(){
         if(paraState[0] && paraState[3]){

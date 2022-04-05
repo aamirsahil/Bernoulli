@@ -1,38 +1,66 @@
-#leftMain{
-    font-size: 1.75vh;
-    padding: 20px;
-  }
-#rightMain{
-    font-size: large;
-    visibility: hidden;
-  }
-  .expand{
-    background-color: bisque;
-  }
-  .expand:hover{
-    cursor: pointer;
-  }
-  .step1,.step2,.step3,.heatEq{
-    visibility: hidden;
-  }
-  .heatEq{
-    font-size: large;
-  }
-  .instru{
-    margin: 20px;
-  }
-  .instruct{
-    color: rgb(73, 7, 134);
-    text-align: center;
-    font-size: 1.1em;
-  }
-  .slidecontainer{
-    /* position: absolute; 
-    bottom: 10px;  */
-    z-index: 20; 
-    /* width: 100%;  */
+.col-md-7{
+  position: relative;
+}
+.col-md-5{
+  font-size: 1.2em;
+  background-color: aliceblue;
+}
+.slidecontainer{
+  position: absolute; 
+  bottom: 10px; 
+  z-index: 20; 
+  width: 100%; 
+  padding-top: 27px;
 }
 .slider{
-    z-index: 20; 
-    width: 100%;
+  z-index: 20; 
+  width: 40%;
+}
+li{
+  margin: 0 0 10px 0;
+}
+.instruct{
+  color: rgb(73, 7, 134);
+  text-align: center;
+}
+.switches{
+  margin: 50px;
+}
+.column{
+  padding: 10px;
+}
+.row .column .switch{
+  font-size: 2.5vh;
+  text-align: center;
+    background: rgb(0, 0, 0);
+    background: rgba(99, 100, 116, 0.75);
+    color: #f1f1f1; /* Grey text */
+    padding: 8px; /* Some padding */
+    box-shadow: 0px 0px 8px -1px black;
+}
+.switch:hover{
+  cursor: pointer;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: #D6EEEE;
+}
+table{
+    width: 90%;
+    margin-top: 25px;
+}
+#csBt{
+    width: 20%;
+}
+.params{
+  position: fixed;
+  margin: 10px;
+}
+.red{
+  color: red;
 }

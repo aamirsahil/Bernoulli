@@ -1,13 +1,11 @@
 //selected parameter
 var paraState = [false,false,false,false];//state of whats selected
-var paraBtn = ['velBt', 'pressBt', 'heightBt','csBt'];//button array
+var paraBtn = ['velocity', 'force', 'height','flow'];;//button array
 let unselectColor = "rgba(99, 100, 116, 0.75)";//color of unselected button
 let selectColor = "#2531d8";//color of selected button
 //calls whenever any button is clcked
 for(let i=0; i<4; i++){
         d3.select("#" + paraBtn[i]).on('click', function(){
-                (paraState[i])?d3.select(this).style("background", unselectColor)
-                :d3.select(this).style("background", selectColor);
                 paraState[i] = !paraState[i];
                 setvisibility(i);
         });

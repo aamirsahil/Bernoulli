@@ -1,13 +1,11 @@
 //selected parameter
 var paraState = [false,false,false,false];//state of whats selected
-var paraBtn = ['velBt', 'pressBt', 'heightBt','csBt'];//button array
+var paraBtn = ['velocity', 'force', 'height','flow'];//button array
 let unselectColor = "rgba(99, 100, 116, 0.75)";//color of unselected button
 let selectColor = "#2531d8";//color of selected button
 //calls whenever any button is clcked
 for(let i=0; i<4; i++){
-        d3.select("#" + paraBtn[i]).on('click', function(){
-                (paraState[i])?d3.select(this).style("background", unselectColor)
-                :d3.select(this).style("background", selectColor);
+        d3.select("#" + paraBtn[i]).on('change', function(){
                 paraState[i] = !paraState[i];
                 setvisibility(i);
         });
@@ -357,10 +355,27 @@ function setDataLine(){
                 .attr("x1",(d) => (widthScale(d.x1) - 3)).attr("x2",(d) => (widthScale(d.x2) - 3))
                 .attr("y1",(d) => heightScale(d.y1)).attr("y2",(d) => heightScale(d.y2));
 }
+//set parameter values
+function setTable(value){
+        let p1 = value;
+        let p2 = value - 30;
+        let h1 = value;
+        let h2 = value + 30;
+        let v1 = Math.sqrt(150 - p1 - h1);
+        let v2 = Math.sqrt(150 - p2 - h2);
+
+        d3.select("#p1").html(p1.toFixed(2));
+        d3.select("#h1").html(h1.toFixed(2));
+        d3.select("#v1").html(v1.toFixed(2));
+        d3.select("#p2").html(p1.toFixed(2));
+        d3.select("#h2").html(h2.toFixed(2));
+        d3.select("#v2").html(v2.toFixed(2));
+}
 //slider drag-right
 slider.on("onchange", (value)=>{
         setValues(value);
         setSection(value);
+        setTable(value);
 
         setDataPointer();
         setDataLine();

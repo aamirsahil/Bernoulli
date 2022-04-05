@@ -17,13 +17,13 @@ const loader = new THREE.GLTFLoader();
 
 class Plane{
     constructor(){
-        loader.load("../../Bernoulli/models/airplane/scene.gltf", (gltf) => {
+        loader.load("../../models/airplane/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(.008,.008,.008);
             gltf.scene.position.set(0, 2, 0);
             this.plane = gltf.scene;
         });
-        loader.load("../../Bernoulli/models/wing/scene.gltf", (gltf) => {
+        loader.load("../../models/wing/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(3.7,4.7,4.7);
             gltf.scene.position.set(-3.8, 0.3, 2.3);
@@ -47,18 +47,20 @@ class Plane{
     turnInvisible(){
         this.plane.visible = false;
         this.wing.visible = true;
+        this.screen.visible = false;
     }
     opacity(length){
         this.plane.visible = true;
         this.wing.visible = false;
+        this.screen.visible = true;
         let opacity = (length - sliderRange[0])/(sliderRange[1] - sliderRange[0]);
         this.screen.material.opacity = opacity;
     }
     wingMoving(length){
         let len = (length - sliderRange[2])/(sliderRange[3] - sliderRange[2]);
         let pos = {x: (4 + 3.8)*len + (-3.8),y: 0.3,z: 2.3};
-        let rotX = (90 - 78.7)*len + 78.7;
-        let rotZ = (185.9)*len;
+        let rotX = (92.2 - 78.7)*len + 78.7;
+        let rotZ = (210)*len;
         let scale = (8.7 - 4.7)*len + 4.7;
 
         this.wing.position.set(pos.x, pos.y, pos.z);
@@ -196,11 +198,11 @@ var canvas = d3.select("#sliderWing")
 //create the slider
 var slider = d3
     .sliderLeft()
-    .min(50)
-    .max(130)
+    .min(80)
+    .max(100)
     .height(130)
     .ticks(5)
-    .default(90);
+    .default(92.2);
 //call slider
 canvas.append("g").attr("class","moveSlider")
     .attr("transform", "translate( " + (Canvas_Width - 10) + " , " + (Canvas_Height/2 - 130/2) + " )")

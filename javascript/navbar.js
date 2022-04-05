@@ -15,6 +15,8 @@ window.addEventListener("load", ()=>{
         "/05_geometric.html",
         "/05_geometric2.html",
         "/06_mathematical.html",
+        "/06_mathematical2.html",
+        "/06_mathematical3.html",
     ];
     
     let loc = window.location.pathname.replace("/Bernoulli", "");
@@ -35,6 +37,8 @@ window.addEventListener("load", ()=>{
             i=3;
             break;
         case link[6]:
+        case link[7]:
+        case link[8]:
             i=4;
             break;
     }
@@ -57,6 +61,8 @@ var link = [
     "/05_geometric.html",
     "/05_geometric2.html",
     "/06_mathematical.html",
+    "/06_mathematical2.html",
+    "/06_mathematical3.html",
     "/07_summary.html"
 ];
 var loc = window.location.pathname.replace("/Bernoulli", "");

@@ -57,6 +57,29 @@ table, th, td {
   #csBt{
       width: 20%;
   }
-#leftMain{
+/* #leftMain{
     font-size: 1vh;
+} */
+.params{
+    position: fixed;
+    margin: 10px;
+}
+#why{
+    background-color: antiquewhite;
+    font-size: 2.2vh;
+    border: solid black;
+    padding: 2px;
+}
+#why:hover{
+    cursor: pointer;
+}
+#moreSteps2{
+    /* visibility: hidden; */
+    background-color: antiquewhite;
+    font-size: 2vh;
+    border: solid black;
+    padding: 2px;
+    margin: 20px;
+    height: 25vh;
+    width: 50vw;
 }

@@ -57,3 +57,7 @@ table, th, td {
   #csBt{
       width: 20%;
   }
+  .params{
+      position: fixed;
+      margin: 10px;
+  }

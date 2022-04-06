@@ -83,13 +83,29 @@
         </div>
 <!--        Derivation(close)  -->
         <div class="col-md-6" id="rightMain">
-            $$ \frac{dT}{dx} = \frac{T(x+dx) - T(x)}{dx} $$
-            $$ \frac{d^2T}{dx^2} = \frac{(\frac{dT}{dx})_{x+dx} - (\frac{dT}{dx})_{x}}{dx} $$
-            $$ = \frac{(\frac{T(x+2dx) - T(x+dx)}{dx}) - (\frac{T(x+dx) - T(x)}{dx})}{dx} $$
-            $$ = \frac{T(x+2dx) - 2T(x+dx) + T(x)}{(dx)^2} $$
-            Putting \(x = x+dx\),
-            $$ \frac{d^2T}{dx^2} = \frac{T(x+dx) - 2T(x) + T(x-dx)}{(dx)^2} $$
-            $$ \therefore T(x+dx) - 2T(x) + T(x-dx) = (dx^2)\frac{d^2 T(x,t)}{dx^2} $$
+            <svg id="system"></svg>
+            <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-header">System parameters</div>
+                    <div class="card-body">
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="v1" max="1" min="0.1" value="0.5" step="0.1"> \(v_1\) = <span id="v1_input" style="width: 25%;"> 0.5 </div>
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="p1"> \(P_1\) = <input autocomplete="off" id="p1_input" type="number" style="width: 25%;"> </div>
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="h1" max="4" min="1" value="2.5" step="0.1"> \(h_1\) = <span id="h1_input" style="width: 25%;">2.5</span> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-header">System parameters</div>
+                    <div class="card-body">
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="r2" max="1" min="0.1" value="0.5" step="0.1"> \(r_2\) = <span id="r2_input" style="width: 25%;">0.5</span> </div>
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="r1" max="1" min="0.1" value="0.5" step="0.1"> \(r_1\) = <span id="r1_input" style="width: 25%;">0.5</span> </div>
+                      <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="h2" max="4" min="1" value="2.5" step="0.1"> \(h_2\) = <span id="h2_input" style="width: 25%;">2.5</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 <!--    Main Body(close)  -->

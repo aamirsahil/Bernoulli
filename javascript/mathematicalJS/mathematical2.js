@@ -72,6 +72,9 @@ canvas.append("g")
             .attr("stroke-width", "3px");
 
 //Params
+var rho = 997;
+var p1 = 100;
+var p2 = 100;
 var r1 = 0.5;
 var r2 = 0.5;
 var h2 = yMax/2;
@@ -83,7 +86,7 @@ var v1j = parseInt((xMax/2 - 0.5)/v1dj);
 
 var v2i = 3;
 var v2dj = (r1/r2)*v1dj;
-var v2j = parseInt((xMax - (xMax/2 + 0.5))/v1dj);
+var v2j = parseInt((xMax - (xMax/2 + 0.5))/v2dj);
 //pipe section
 var x1 = (d) => {
     let sep = 0.5;
@@ -224,6 +227,7 @@ d3.select("#r2").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
+    changeValues();
 });
 d3.select("#r1").on("input", () => {
     r1 = parseFloat(d3.select("#r1").property("value"));
@@ -231,6 +235,7 @@ d3.select("#r1").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
+    changeValues();
 });
 d3.select("#h1").on("input", () => {
     h1 = parseFloat(d3.select("#h1").property("value"));
@@ -238,6 +243,7 @@ d3.select("#h1").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
+    changeValues();
 });
 d3.select("#h2").on("input", () => {
     h2 = parseFloat(d3.select("#h2").property("value"));
@@ -245,11 +251,20 @@ d3.select("#h2").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
+    changeValues();
 });
 d3.select("#v1").on("input", () => {
     v1dj = parseFloat(d3.select("#v1").property("value"));
     d3.select("#v1_input").html(v1dj);
-    changeVelocity()
+    changeVelocity();
+    changeValues();
+    // changePipe();
+    // changeGreySection();
+});
+d3.select("#p1").on("input", () => {
+    p1 = parseFloat(d3.select("#p1").property("value"));
+    d3.select("#p1_input").html(p1);
+    changeValues();
     // changePipe();
     // changeGreySection();
 });
@@ -271,7 +286,7 @@ function changeGreySection(){
 function changeVelocity(){
     v1j = parseInt((xMax/2 - 0.5)/v1dj);
     v2dj = (r1/r2)*v1dj;
-    v2j = parseInt((xMax - (xMax/2 + 0.5))/v1dj);
+    v2j = parseInt((xMax - (xMax/2 + 0.5))/v2dj);
 
     velocityArrayLeft = createVelocityArray("left");
     velocityArrayRight = createVelocityArray("right");
@@ -297,4 +312,9 @@ function changeVelocity(){
                 .attr("cy", (d) => heightScale(d.y))
                 .attr("r", 2.5)
                 .attr("fill", "blue");
+}
+function changeValues(){
+    d3.select("#v2").html(v2dj.toFixed(2));
+    p2 = p1 + (rho*9.8*h1) + (0.5*rho*Math.pow(v1dj,2)) - (rho*9.8*h2) - (0.5*rho*Math.pow(v2dj,2));
+    d3.select("#p2").html(p2.toFixed(2));
 }

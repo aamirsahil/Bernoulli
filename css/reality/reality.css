@@ -3,7 +3,7 @@ p{
   font-size: 3.5vh;
 }
 li{
-  font-size: 4vh;
+  font-size: 3.3vh;
   margin: 0 0 30px 0;
 }
 #realImage{
@@ -14,9 +14,36 @@ li{
 #rightMain{
   text-align: center;
 }
+img{
+  height: 50vh;
+  width: 50vh;
+}
 
+.item1 { grid-area: pic1; }
+.item2 { grid-area: pic2; }
+.item3 { grid-area: link; }
 
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'pic1 pic1 pic1 pic2 pic2 pic2'
+    'link link link link link link';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
 
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.btn{
+  width: 98%;
+  height: 100%;
+  font-size: large;
+}
 
 
   /* .col-md-4{

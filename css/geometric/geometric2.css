@@ -74,7 +74,7 @@ table, th, td {
     cursor: pointer;
 }
 #moreSteps2{
-    /* visibility: hidden; */
+    visibility: hidden;
     background-color: antiquewhite;
     font-size: 2vh;
     border: solid black;

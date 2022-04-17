@@ -68,8 +68,8 @@ var link = [
 var loc = window.location.pathname.replace("/Bernoulli", "");
 var linkIndex = link.indexOf(loc);
 d3.select("#nextBtn").on("mousedown", ()=>{
-    window.location = "/Bernoulli" + link[linkIndex+1];
+    window.location = link[linkIndex+1];
 });
-d3.select("#prevBtn").on("mousedown", ()=>{
-    window.location = link[linkIndex-1];
-});
+// d3.select("#prevBtn").on("mousedown", ()=>{
+//     window.location = link[linkIndex-1];
+// });

@@ -43,6 +43,12 @@ function setvisibility(i){
                         break;
         }
 }
+//
+let stepVisible = false;
+d3.select("#why").on("click", function (){
+        d3.select("#moreSteps2").style("visibility", (stepVisible)?"hidden":"visible");
+        stepVisible = !stepVisible;
+});
 //To calculate the profile of the graph
 function u(x,h,k,c){
         let L = 1;

@@ -59,16 +59,15 @@
 .item2 { grid-area: vmap; }
 .item3 {grid-area: visc}
 .item4 {grid-area: svg}
-.item5 {grid-area: next}
 
 .grid-container {
  display: grid;
  grid-template-areas:
-   'inc inc inc  vmap vmap vmap visc visc visc'
-   'svg svg svg svg svg svg svg svg next';
- gap: 10px;
- background-color: #2196F3;
- padding: 10px;
+   'inc  vmap visc'
+   'svg svg svg';
+   gap: 1px;
+   background-color: #9ea9b1;
+   padding: 1px;
 }
 
 .grid-container > div {
@@ -79,4 +78,7 @@
 .item1:hover,.item2:hover,.item3:hover{
     cursor: pointer;
     background-color: bisque;
+}
+#rightMain{
+  width: 90%
 }

@@ -9,6 +9,7 @@ html {
   width: 100%;
 }
 #leftMain{
+  padding: 10px;
   font-size:3vh;
   background-color: aliceblue;
   height: 100%;
@@ -16,6 +17,7 @@ html {
 }
 #rightMain{
   height: 100%;
+  width: 100%;
 }
 
 #Main{

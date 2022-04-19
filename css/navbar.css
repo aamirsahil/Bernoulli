@@ -62,7 +62,7 @@
     background: #e74c3c;
   }
   .btnNav{
-      position: relative;
+      position: absolute;
       background-color: #555;
     border-radius: 30%;
     z-index: 20;
@@ -70,6 +70,8 @@
     left: 1vw;
   }
   #nextBtn{
+      left: 92vw;
+      top: 50vh;
       height: 50px;
       width: 50px;
   }

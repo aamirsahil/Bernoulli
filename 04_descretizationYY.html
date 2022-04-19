@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Discretization</title>
+    <title>Descretization</title>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: { inlineMath: [["\\(","\\)"]] } }); </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="math.js" type="text/javascript"></script>
     <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script type="text/x-mathjax-config"> 
+        MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: { inlineMath: [["\\(","\\)"]] } });
+     </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css\style.css">
     <link rel="stylesheet" href="css\navbar.css">
     <link rel="stylesheet" href="css\descretization\descretization.css">
+
 
 </head>
 <body>
@@ -41,62 +45,50 @@
     <div class="btnNav" id="nextBtn">
         <div class="arrow right"></div>
     </div>
-    <!-- <div class="btnNav" id="nextBtn">
-        <div class="arrow right"></div>
-    </div> -->
 
 </div>
 
 <!--    The Navigation Bar(close)  -->
 <!--    Main Body  -->
     <div class="row" id="Main">
-        <!-- Left -->
+<!--    Description  -->
         <div id="leftMain" class="col-md-5">
-<!--            Explanation  -->
             <h1>Discretization</h1>
+            <p>Here we discretize the rod - The one dimensional continuum rod is considered to be made up of
+                mass points separated by distance \(dx\)</p>
             <ul>
-                <li>We focus our analysis on an element of fluid.</li>
+                <li id="point01">We focus our analysis on one mass point.</li>
+                <li id="point02">Temperature of a mass point is influenced by the temperature of its neighbouring mass points.</li>
+                <li id="point03">Greater the conductivity of the material, more quickly all the 3 points attain same temperature - in
+                    other words thermal equilibrium.</li>
             </ul>
-            <div id="steps_force1">
-                The position of the fluid element at \(t\) is <span style="font-size: 30px;">&#9312;</span><br>
-                The position of the fluid element at \(t + dt\) is <span style="font-size: 30px;">&#9313;</span><br>
-            </div>
-            <ul>
-                <li>Force is exerted on the fluid element by the pressure of the surrounding fluid</li>
-            </ul>
-            <div id="steps_force2">
-                Force along the motion \( = P_1 A_1 \implies \)  
-                $$ \text{work done on the fluid element} = P_1 A_1 ds_1 $$<br>
-                Force against the motion \( = P_2 A_2 \implies \) 
-                $$ \text{work done by the fluid element} = P_2 A_2 ds_2 $$<br>
-            </div>
-<!-- Explanation(close) -->
-        </div>
-        <!-- Left(close) -->
-        <!-- Right -->
-        <div class="col-md-7">
-            <div id="rightMain">
-                <div class="grid-container">
-                    <!-- graph -->
-                    <div class="item1">
-                        <svg id="system"></svg>
-                    </div>
-                </div>
+            <div class="instru">
+                <div class="instruct">Drag the slider to discretize !</div>
+
+            <div class="slidecontainer">
+                <input id="myRange" type="range" min="0" max="100" value="0" class="slider2" autocomplete="off">
+              </div>
             </div>
         </div>
-        <!-- Right(close) -->
+<!--        Description(close)  -->
+<!--        Descretizing  -->
+        <div id="rightMain" class="col-md-7">
+            <svg id="system">
+            </svg>
+            <div class="switchContainer">
+                <div class="instruct">Fluid elements</div>
+                <label class="switch">
+                    <input id="switch" type="checkbox" autocomplete="off">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+<!--        Descretizing(close)  -->
     </div>
 <!--    Main Body(close)  -->
 </div>
 
 </body>
-<script src="javascript\descretizationJS\page01\variableDeclaration.js"></script>
-<script src="javascript\descretizationJS\page01\functionDefs.js"></script>
-<script src="javascript\descretizationJS\page01\variableDeclaration2.js"></script>
-<script src="javascript\descretizationJS\page01\svgElementDeclaration.js"></script>
-<script src="javascript\descretizationJS\page01\svgElementDeclaration2.js"></script>
-<script src="javascript\descretizationJS\page01\svgElementDeclaration3.js"></script>
-<script src="javascript\descretizationJS\page01\sliderInteraction.js"></script>
-<script src="javascript\descretizationJS\page01\index.js"></script>
+<script type="module" src="javascript\descretizationJS\descretization.js"></script>
 <script src="javascript\navbar.js"></script>
 </html>

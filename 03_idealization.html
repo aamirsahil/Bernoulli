@@ -42,7 +42,9 @@
     <!-- Progress Bar(close) -->
 
     <!-- NextBtn -->
-
+    <div class="btnNav" id="nextBtn">
+        <div class="arrow right"></div>
+    </div>
 
 </div>
 
@@ -50,64 +52,63 @@
 <!--    Main Body  -->
     <div class="row" id="Main">
 <!--    Description  -->
-        <div id="leftMain" class="col-md-5">
-            <h1>Idealization</h1>
-            <p>Here we strip away details we consider unnecessary to solving the problem at hand.</p>
-            <ul>
-                <li id="point01">In airplane flight and the river, the key underlying element is the motion of fluid.</li>
-                <li id="point02">Therefore we model the fluid first !</li>
-                <li id="point03">We consider the moving fluid as a vector field - ie. each point in the fluid is associated with a
-                    velocity.</li>
-                <li id="point04">Streamline is a curve whose tangent at any point is the velocity vector.</li>
-                <li id="point05">In the presence of an obstacle, the flow field will change.</li>
-            </ul>
-            <div class="instru">
-                <div class="instruct">Drag the slider to Idealize !</div>
-                <svg width="100%" height="25px" id="pointers">
-                    <defs>
-                        <path id="marker" stroke-linecap="round" d="M 0 0 H 30 L 15 25"/>
-                    </defs>
-                    <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
-                    <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker5" fill="#a6a5a2"  y="0"/>
-                </svg>
-            <div class="slidecontainer">
-                <input id="myRange" type="range" min="0" max="100" value="0" class="slider2" autocomplete="off">
-              </div>
+        <div class="col-md-5">
+            <div id="leftMain">
+                <h1>Idealization</h1>
+                <p>Here we strip away details we consider unnecessary to solving the problem at hand.</p>
+                <ul>
+                    <li id="point01">In airplane flight and the river, the key underlying element is the motion of fluid.</li>
+                    <li id="point02">Therefore we model the fluid first !</li>
+                    <li id="point03">We consider the moving fluid as a vector field - ie. each point in the fluid is associated with a
+                        velocity.</li>
+                    <li id="point04">Streamline is a curve whose tangent at any point is the velocity vector.</li>
+                    <li id="point05">In the presence of an obstacle, the flow field will change.</li>
+                </ul>
+                <div class="instru">
+                    <div class="instruct">Drag the slider to Idealize !</div>
+                    <svg width="100%" height="25px" id="pointers">
+                        <defs>
+                            <path id="marker" stroke-linecap="round" d="M 0 0 H 30 L 15 25"/>
+                        </defs>
+                        <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
+                        <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker5" fill="#a6a5a2"  y="0"/>
+                    </svg>
+                <div class="slidecontainer">
+                    <input id="myRange" type="range" min="0" max="100" value="0" class="slider2" autocomplete="off">
+                </div>
+                </div>
             </div>
         </div>
 <!--        Description(close)  -->
 <!--        Descretizing  -->
-        <div id="rightMain" class="col-md-7">
-            <div class="grid-container">
-                <!-- Switch to add foil -->
-                <div class="item1">
-                    <div class="switchContainer">
-                        <div class="instruct">Add air foil
-                            <label class="switch">
-                                <input id="switch" type="checkbox" autocomplete="off">
-                                <span class="slider round"></span>
-                            </label>
+        <div class="col-md-7">
+            <div id="rightMain">
+                <div class="grid-container">
+                    <!-- Switch to add foil -->
+                    <div class="item1">
+                        <div class="switchContainer">
+                            <div class="instruct">Add air foil
+                                <label class="switch">
+                                    <input id="switch" type="checkbox" autocomplete="off">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="item2">
-                    <!-- Svg -->
-                    <svg id="system">
-                    </svg>
-                </div>
-                <div class="item3">
-                    <div class="btnNav" id="nextBtn">
-                        <div class="arrow right"></div>
+                    <div class="item2">
+                        <!-- Svg -->
+                        <svg id="system">
+                        </svg>
                     </div>
                 </div>
             </div>
-        </div>
 <!--        Descretizing(close)  -->
-    </div>
+        </div>
 <!--    Main Body(close)  -->
+</div>
 </div>
 
 </body>

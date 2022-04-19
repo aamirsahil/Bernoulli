@@ -12,6 +12,8 @@ window.addEventListener("load", ()=>{
         "/03_idealization.html",
         "/03_idealization2.html",
         "/04_descretization.html",
+        "/04_descretization2.html",
+        "/04_descretization3.html",
         "/05_geometric.html",
         "/05_geometric2.html",
         "/06_mathematical.html",
@@ -30,15 +32,17 @@ window.addEventListener("load", ()=>{
             i=1;
             break;
         case link[3]:
-            i=2;
-            break;
         case link[4]:
         case link[5]:
-            i=3;
+            i=2;
             break;
         case link[6]:
         case link[7]:
+            i=3;
+            break;
         case link[8]:
+        case link[9]:
+        case link[10]:
             i=4;
             break;
     }
@@ -58,6 +62,8 @@ var link = [
     "/03_idealization.html",
     "/03_idealization2.html",
     "/04_descretization.html",
+    "/04_descretization2.html",
+    "/04_descretization3.html",
     "/05_geometric.html",
     "/05_geometric2.html",
     "/06_mathematical.html",

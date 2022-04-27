@@ -7,6 +7,12 @@ var canvasHeight = document.getElementById('rightMain').offsetHeight - 60;
 var canvas = d3.select("#system")
         .attr("width",canvasWidth)
         .attr("height",canvasHeight);
+//set height and width of the image
+d3.select("#river").style("width", (canvasWidth +150) + "px")
+                .style("height", canvasHeight + "px")
+                .on("click", ()=> {
+                        alert("hey");
+                });
 
 var bisect = d3.bisector(d => d).left;
 
@@ -212,6 +218,7 @@ d3.select("#myRange").on("input", () => {
         }
         else if(length > sliderRange[0] && length <= sliderRange[1]){
             setText(0);
+                d3.select("#river").style("opacity", setOpacity(length, 1, 0) + "%");
             canvasText.style("opacity", setOpacity(length,0,1) + "%");
             backGround.style("opacity", setOpacity(length,0,1) + "%");
         }
@@ -247,6 +254,7 @@ d3.select("#myRange").on("input", () => {
         else{
                 setText(4);
                 setMarker(3);
+                d3.select(".switchContainer").style("visibility", "visible");
         }
 });
 

@@ -92,6 +92,7 @@
   .switchContainer{
     text-align: center;
     padding: 1px;
+    visibility: hidden;
   }
   #point01, #point02, #point03, #point04, #point05{
     visibility: hidden;
@@ -125,4 +126,7 @@
 }
 #rightMain{
   width: 90%
+}
+#flowingfluid{
+  position: fixed;
 }

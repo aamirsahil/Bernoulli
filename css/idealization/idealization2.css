@@ -55,16 +55,12 @@
    overflow: visible;
 }
 
-.item1 { grid-area: inc; }
-.item2 { grid-area: vmap; }
-.item3 {grid-area: visc}
-.item4 {grid-area: svg}
+.item1 { grid-area: svg; }
 
 .grid-container {
  display: grid;
  grid-template-areas:
-   'inc  vmap visc'
-   'svg svg svg';
+   'svg';
    gap: 1px;
    background-color: #9ea9b1;
    padding: 1px;
@@ -75,10 +71,17 @@
  text-align: center;
  padding: 1px 0;
 }
-.item1:hover,.item2:hover,.item3:hover{
-    cursor: pointer;
-    background-color: bisque;
-}
 #rightMain{
   width: 90%
+}
+#river{
+  transform: scaleX(-1);
+}
+#one{
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: azure;
 }

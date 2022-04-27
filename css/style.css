@@ -23,3 +23,14 @@ html {
 #Main{
   height: 75vh;
 }
+.definition{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.797);
+  box-shadow: 0px 0px 15px -1px black;
+  visibility: hidden;
+}

@@ -57,11 +57,11 @@
         <div id="leftMain" class="col-md-5">
             <h1>Idealization</h1>
             <p>Here we strip away details we consider unnecessary to solving the problem at hand.</p>
+            <p id="point01">For generality we consider, a fluid flow that involves change in cross sectional area and height.</p>
+            <p id="point02">As part of the modeling process, we make the following assumptions:</p>
             <ul>
-                <li id="point01">For generality we consider, a fluid flow that involves change in cross sectional area and height.</li>
-                <li id="point02">As part of the modeling process, we make the following assumptions:</li>
                 <li id="point03">fluid is incompressible [no internal energy change link]</li>
-                <li id="point04">Flow is in a steady state - which means `velocity map’ at various points in space remains
+                <li id="point04">Flow is in a steady state - which means 'velocity map' at various points in space remains
                     constant.</li>
                 <li id="point05">No viscosity</li>
             </ul>
@@ -71,7 +71,7 @@
                     <defs>
                         <path id="marker" stroke-linecap="round" d="M 0 0 H 30 L 15 25"/>
                     </defs>
-                    <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
+                    <use xlink:href="#marker" id="marker1" fill="#a6a5a2"  y="0"/>
                     <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
                     <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
                     <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
@@ -89,15 +89,6 @@
                 <div class="grid-container">
                     <!-- Switch to add foil -->
                     <div class="item1">
-                        <div>incompressible</div>
-                    </div>
-                    <div class="item2">
-                        <div>Velocity Map</div>
-                    </div>
-                    <div class="item3">
-                        <div>Viscosity</div>
-                    </div>
-                    <div class="item4">
                         <!-- Svg -->
                         <div id="system">
                         </div>
@@ -108,11 +99,24 @@
 <!--        Descretizing(close)  -->
     </div>
 <!--    Main Body(close)  -->
+<!-- Definitions -->
+<div class="definition">
+    <div id="one">
+        <img src="images/reality/plane.gif"><br>
+        Incompressibility means \( \rho \) is a constant<br>
+        <div class="btn btn-success" type="button">ok</div>
+    </div>
+</div>
+<!-- Defintion(close) -->
 </div>
 
 </body>
 
-<script src="javascript\idealizationJS\idealization2canvas.js"></script>
-<script src="javascript\idealizationJS\idealization2.js"></script>
+<script src="javascript\idealizationJS\idealization2\functionDefs.js"></script>
+<script src="javascript\idealizationJS\idealization2\variableDeclaration.js"></script>
+<script src="javascript\idealizationJS\idealization2\idealization2canvas.js"></script>
+<script src="javascript\idealizationJS\idealization2\sliderInteractionFunctions.js"></script>
+<script src="javascript\idealizationJS\idealization2\leftSliderInteraction.js"></script>
+<script src="javascript\idealizationJS\idealization2\idealization2.js"></script>
 <script src="javascript\navbar.js"></script>
 </html>

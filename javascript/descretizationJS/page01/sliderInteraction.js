@@ -6,8 +6,12 @@ function setSection(value){
     plotSection.data([dataSection]).attr("d",line);
 
     sectionWidthInital = parseInt((value - sliderStartPos + 0.008)*totalNum/totalLen);
+    dataSectionInitial = createSection(sliderStartPos, sectionWidthInital);
+    plotSectionInital.data([dataSectionInitial]).attr("d", line);
 
     sectionWidthFinal  = parseInt((value - sliderStartPos)*totalNum/totalLen);
+    dataSectionFinal = createSection(sliderStartPos + sectionWidthLen, sectionWidthFinal);
+    plotSectionFinal.data([dataSectionFinal]).attr("d", line);
 }
 function setDataLine(){
     dataLine1.data([{

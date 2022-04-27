@@ -14,9 +14,9 @@ window.addEventListener("load", ()=>{
         "/04_descretization.html",
         "/04_descretization2.html",
         "/04_descretization3.html",
-        "/05_geometric.html",
-        "/05_geometric2.html",
-        "/06_mathematical.html",
+        // "/05_geometric.html",
+        // "/05_geometric2.html",
+        // "/06_mathematical.html",
         "/06_mathematical2.html",
         "/06_mathematical3.html",
     ];
@@ -38,13 +38,13 @@ window.addEventListener("load", ()=>{
             break;
         case link[6]:
         case link[7]:
-            i=3;
-            break;
-        case link[8]:
-        case link[9]:
-        case link[10]:
             i=4;
             break;
+        // case link[8]:
+        // case link[9]:
+        // case link[10]:
+        //     i=4;
+        //     break;
     }
     let width = d3.select(".svgNav").style("width").replace("px","");
     let xStart = parseInt(width/6);
@@ -64,9 +64,9 @@ var link = [
     "/04_descretization.html",
     "/04_descretization2.html",
     "/04_descretization3.html",
-    "/05_geometric.html",
-    "/05_geometric2.html",
-    "/06_mathematical.html",
+    // "/05_geometric.html",
+    // "/05_geometric2.html",
+    // "/06_mathematical.html",
     "/06_mathematical2.html",
     "/06_mathematical3.html",
     "/07_summary.html"
@@ -74,7 +74,7 @@ var link = [
 var loc = window.location.pathname.replace("/Bernoulli", "");
 var linkIndex = link.indexOf(loc);
 d3.select("#nextBtn").on("mousedown", ()=>{
-    window.location = "/Bernoulli" + link[linkIndex+1];
+    window.location = link[linkIndex+1];
 });
 // d3.select("#prevBtn").on("mousedown", ()=>{
 //     window.location = link[linkIndex-1];

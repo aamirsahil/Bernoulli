@@ -6,6 +6,10 @@ var dataUpper = x.map( (d) => ({x: d, y: u(d,+0.3,8,0.6)}));
 var index = bisect(x,sliderStartPos);
 //create a section of pipe within x and x+t
 var dataSection = createSection();
+//data for the yellow section
+var dataSectionInitial = createSection(startPos,0);
+//data for the red section
+var dataSectionFinal = createSection(startPos + sectionWidthLen,0);
 //point states
 var dataVel = createDataVel();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

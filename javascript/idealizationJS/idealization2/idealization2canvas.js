@@ -49,25 +49,26 @@ function draw(){
     (crossSectionVisible)?stroke("yellow"):noStroke();
     ellipse(crossSectionPos.x + 50, crossSectionPos.y, 25, 50);
     //printing particles
-    fill(255);
+    fill("black");
     velocityPoints.map( (d) => {
         ellipse(d.x, d.y, 10, 10);
     });
     //move velocity points
-    movePoints();
+    movePoints(width);
+    //stream pipe
+    stroke("black");
+    strokeWeight(5);
+    for(let i = 0;i<totalNum-1;i++){
+        line(widthScale(x[i]), heightScale(dataUpper[i].y), widthScale(x[i+1]), heightScale(dataUpper[i+1].y));
+        line(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]), heightScale(dataLower[i+1].y));
+      }
 }
 
 
     // incSlider = createSlider(30, 100, 30);
     // incSlider.parent("#system");
     // incSlider.position(canvasXoffset + width/2, canvasYoffset + height/1.5);
-    //stream pipe
-    // stroke("black");
-    // strokeWeight(5);
-    // for(let i = 0;i<totalNum-1;i++){
-    //     line(widthScale(x[i]), heightScale(dataUpper[i].y), widthScale(x[i+1]), heightScale(dataUpper[i+1].y));
-    //     line(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]), heightScale(dataLower[i+1].y));
-    //   }
+
     //selection
     // lenOfSection = incSlider.value();
     // startPos = incSlider.value() - 30;

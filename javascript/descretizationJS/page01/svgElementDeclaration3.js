@@ -46,7 +46,7 @@ var A1 = canvas.append("g")
                         heightScale(dataVel.slice(totalNum,2*totalNum)[index].y)))
             .attr("fill","none")
             .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
-            .attr("fill", "grey");
+            .attr("fill", "yellow").style("opacity", "50%");
 //plot cross-section------------------------------------------------>right
 var A2 = canvas.append("g")
             .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
@@ -59,7 +59,33 @@ var A2 = canvas.append("g")
                         heightScale(dataVel.slice(totalNum,2*totalNum)[index + sectionWidthIndex].y)))
             .attr("fill","none")
             .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
-            .attr("fill", "grey");
+            .attr("fill", "green").style("opacity", "50%");
+//plot cross-section(static)------------------------------------------------>left
+canvas.append("g")
+.attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+.append("ellipse")
+.attr("class", ".dataPointer")
+.attr("cx",widthScale(dataVel.slice(0,totalNum)[index].x) - 3)
+.attr("cy", heightScale(dataVel.slice(0,totalNum)[index].y))
+.attr("rx", 30)
+.attr("ry", -2*(heightScale(dataVel.slice(0,totalNum)[index].y) - 
+            heightScale(dataVel.slice(totalNum,2*totalNum)[index].y)))
+.attr("fill","none")
+.attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
+.attr("fill", "grey").style("z-index", 20);
+//plot cross-section(static)------------------------------------------------>right
+canvas.append("g")
+.attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+.append("ellipse")
+.attr("class", ".dataPointer")
+.attr("cx",widthScale(dataVel.slice(0,totalNum)[index + sectionWidthIndex].x) - 3)
+.attr("cy", heightScale(dataVel.slice(0,totalNum)[index + sectionWidthIndex].y))
+.attr("rx", 10)
+.attr("ry", -2*(heightScale(dataVel.slice(0,totalNum)[index + sectionWidthIndex].y) - 
+            heightScale(dataVel.slice(totalNum,2*totalNum)[index + sectionWidthIndex].y)))
+.attr("fill","none")
+.attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
+.attr("fill", "grey");
 //plot force arrows------------------------------------------------------->left
 var forceVectorLeft = canvas.append("g").attr("class", "forceLeft")
                 .attr("transform","translate(" + (graphXOffset - 20) + "," + graphYOffset + ")")

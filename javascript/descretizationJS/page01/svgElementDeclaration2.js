@@ -35,6 +35,30 @@ var plotSection = canvas.append("g")
                 .attr("fill","grey")
                 .attr("stroke", "black")
                 .attr("stroke-width", 1).style("opacity", "50%");
+//yellow portion
+var plotSectionInital = canvas.append("g")
+            .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+            .selectAll(".plotSectionInitial")
+            .data([dataSectionInitial])
+            .enter()
+                .append("path")
+                .attr("class", "plotSectionInitial")
+                .attr("d",line)
+                .attr("fill","yellow")
+                .attr("stroke", "black")
+                .attr("stroke-width", 1).style("opacity", "50%");
+//red portion
+var plotSectionFinal = canvas.append("g")
+            .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+            .selectAll(".plotSectionFinal")
+            .data([dataSectionFinal])
+            .enter()
+                .append("path")
+                .attr("class", "plotSectionFinal")
+                .attr("d",line)
+                .attr("fill","green")
+                .attr("stroke", "black")
+                .attr("stroke-width", 1).style("opacity", "50%");
 //plot velocity vectors
 var plotVelocity = canvas.append("g")
         .attr("transform","translate(" + graphXOffset + "," + (graphYOffset) + ")")

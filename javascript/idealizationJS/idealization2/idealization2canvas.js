@@ -2,7 +2,7 @@ createVelocityPoints();
 //define the entire canvas(right side)
 function setup(){
     canvas = createCanvas(canvasWidth, canvasHeight);
-    cavasColor = "#0733ad"
+    cavasColor = "#abdcff"
     canvas.parent("#system");
     background(cavasColor);
 

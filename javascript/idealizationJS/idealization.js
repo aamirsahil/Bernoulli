@@ -19,7 +19,7 @@ var bisect = d3.bisector(d => d).left;
 var foilWidth = 600;
 var foilHeight = 200;
 let foilColor = "#8a8a8a";
-let backGroundColor = "#0733ad";
+let backGroundColor = "#abdcff";
 //background
 var backGround = canvas.append("rect")
                     .attr("x",0).attr("y",0)

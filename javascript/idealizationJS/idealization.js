@@ -29,7 +29,7 @@ var backGround = canvas.append("rect")
 var airFoil = canvas.append("g").attr("class","airFoil")
                 .attr("transform", "translate("+ ((canvasWidth - foilWidth)/2) + "," + ((canvasHeight - foilHeight)/2) +")")
                 .append("path")
-                .attr("d",foilPath).attr("fill",foilColor).style("visibility", "hidden");
+                .attr("d",foilPath).attr("fill",foilColor);
 // streamLines 
 function f(x,a = -3,d = 0,b = -1,c = 3){
         let exp = Math.pow(x-b, 2)/2/Math.pow(c, 2);
@@ -183,12 +183,12 @@ var plotCompleteStreamLine = canvas.append("g")
 var streamText = canvas.append("g")
                 .append("text")
                 .style("font-size", "2rem")
-                .attr("x", widthScale(linearData[5][50].x))
-                .attr("y", heightScale(linearData[5][50].y + 0.5))
+                .attr("x", widthScale(completeData[5][50].x))
+                .attr("y", heightScale(completeData[5][50].y + 0.5))
                 .attr("dy", ".35em")
                 .text( "Streamline")
                 .style("fill", "white").style("visibility", "hidden");
-var switchSate = false;
+var switchSate = true;
 d3.select("#switch").on("input", () => {
         switchSate = !switchSate;
         (switchSate)?airFoil.style("visibility", "visible"):airFoil.style("visibility", "hidden");

@@ -1,21 +1,21 @@
 import { foilPath } from '../descretizationJS/svg.js';
 import { setMarker, setText, resetAll } from './rightSliderInteractions.js';
-
-var canvasWidth = document.getElementById('rightMain').offsetWidth - 150;
+// canvas dimension
+var canvasWidth = document.getElementById('rightMain').offsetWidth - 2;
 var canvasHeight = document.getElementById('rightMain').offsetHeight - 60;
 //define the entire canvas(right side)
 var canvas = d3.select("#system")
         .attr("width",canvasWidth)
         .attr("height",canvasHeight);
 //set height and width of the image
-d3.select("#river").style("width", (canvasWidth +150) + "px")
+d3.select("#river").style("width", (canvasWidth) + "px")
                 .style("height", canvasHeight + "px")
                 .on("click", ()=> {
                         alert("hey");
                 });
-
+// find index that bisects a given value in an array
 var bisect = d3.bisector(d => d).left;
-
+// foil dimension
 var foilWidth = 600;
 var foilHeight = 200;
 let foilColor = "#8a8a8a";
@@ -30,7 +30,7 @@ var airFoil = canvas.append("g").attr("class","airFoil")
                 .attr("transform", "translate("+ ((canvasWidth - foilWidth)/2) + "," + ((canvasHeight - foilHeight)/2) +")")
                 .append("path")
                 .attr("d",foilPath).attr("fill",foilColor);
-// streamLines 
+// streamLines curved
 function f(x,a = -3,d = 0,b = -1,c = 3){
         let exp = Math.pow(x-b, 2)/2/Math.pow(c, 2);
         return a*Math.exp(-exp) + d;
@@ -77,7 +77,7 @@ function createFluidPointsLinear(x0 = 0){
     }
     return Array.prototype.concat.apply([], temp);
 }
-//create a set of streamLines
+// create a set of streamLines
 function createFoilFlow(){
         for( let a = -5; a<5; a += (a<0)?1:0.5){
                 if(a>-1 && a<1.5) 
@@ -96,11 +96,11 @@ function createLinearFlow(){
             linearData.push(data);
     }
 }
-//x axis goes from -2 to 2
+// x axis goes from -2 to 2
 var totalNum = 101;
 var sepX = 4/(totalNum - 1);
 var x = [...Array(totalNum).keys()].map( d => (d*sepX + -2));
-//width and height scale to plot
+// width and height scale to plot
 var widthScale = d3.scaleLinear()
                     .domain([d3.min(x), d3.max(x)])
                     .range([0, canvasWidth]);
@@ -112,15 +112,16 @@ var heightScale = d3.scaleLinear()
                     .range([canvasHeight,0]);
 //convert a set of d to correspondig set (x,y)
 var line = d3.line()
-.x( d => widthScale(d.x))
-.y( d => heightScale(d.y));
+        .x( d => widthScale(d.x))
+        .y( d => heightScale(d.y));
 // streamLine
 var streamLen = 12;
 var completeData = [];
 var linearData = [];
+// create and store point coordinates
 createFoilFlow();
 createLinearFlow();
-//create mass points
+//create mass points---->distData is for curved stream dist=distnace between points, num=number of points
 let distData = [...Array(streamLen).keys()].map((d) => ({dist: (d+1)*20, num: parseInt(canvasWidth/(d+1)/20)}));
 let linearDist = {dist: 60, num: parseInt(canvasWidth/60)};
 let linearVelLength = 40;
@@ -287,9 +288,7 @@ function animate(){
         requestAnimationFrame(animate);
 }
 animate();
-
-
-
+// make everything fit on resizing
 function svgResize()
 {
     d3.select("#marker1")

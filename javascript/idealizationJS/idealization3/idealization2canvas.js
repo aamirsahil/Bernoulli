@@ -14,7 +14,6 @@ function setup(){
 
     lenOfSection = 30;
     startPos = 0;
-
     // show streamLine
     streamLineShow = false;
     streamFlow = false;
@@ -23,23 +22,16 @@ function setup(){
 }
 function draw(){
     background(cavasColor);
-    // pipe
-    noStroke();
-    fill(184, 182, 182, 50);
-    for(let i=0;i<totalNum-1;i++){
-        rect(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]) - widthScale(x[i]), heightScale(dataUpper[i].y) - heightScale(dataLower[i].y));
-    }
-    // rect
-    stroke("black");
-    fill("#d6d4d4");
-    rect(0, 0, 250, 30);
-    rect(0, height - 40, width, 40);
+
     //stream pipe
-    stroke("red");
+    stroke("black");
     strokeWeight(2);
     for(let i = 0;i<totalNum-1;i++){
         line(widthScale(x[i]), heightScale(dataUpper[i].y), widthScale(x[i+1]), heightScale(dataUpper[i+1].y));
         line(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]), heightScale(dataLower[i+1].y));
+
+        line(widthScale(x[i]), heightScale(dataUpper[i].y) - (heightScale(dataLower[i].y) - heightScale(dataUpper[i].y)),
+         widthScale(x[i+1]), heightScale(dataUpper[i+1].y) - (heightScale(dataLower[i+1].y) - heightScale(dataUpper[i+1].y)));
       }
     if(streamLineShow){
         // 3 streamLines
@@ -54,41 +46,32 @@ function draw(){
     //printing particles
     fill("black");
     stroke("black");
-    strokeWeight(2);
+    strokeWeight(3);
     if(streamFlow)
         createVelocityPoints();
     velPointsMid.map( (d) => {
-        ellipse(widthScale(d.x), heightScale(d.y), 5, 5);
+        ellipse(widthScale(d.x), heightScale(d.y), 10, 10);
     });
     velPointsUp.map( (d) => {
-        ellipse(widthScale(d.x), heightScale(d.y), 5, 5);
+        ellipse(widthScale(d.x), heightScale(d.y), 10, 10);
     });
     velPointsLow.map( (d) => {
-        ellipse(widthScale(d.x), heightScale(d.y), 5, 5);
+        ellipse(widthScale(d.x), heightScale(d.y), 10, 10);
     });
-    // height
-    strokeWeight(1);
-    textSize(20);
-    // h1
-    line(widthScale(x[5]), heightScale(streamLineMid[5].y), widthScale(x[5]), height - 40);
-    text('h1', widthScale(x[5]) + 10, heightScale(streamLineMid[5].y) - heightScale(dataUpper[5].y) + heightScale(dataLower[5].y) - 20);
-// h2
-    line(widthScale(x[totalNum-5]), heightScale(streamLineMid[totalNum-5].y), widthScale(x[totalNum-5]), height - 40);
-    text('h2', widthScale(x[totalNum-5]) - 30, heightScale(streamLineMid[totalNum-5].y) - heightScale(dataUpper[totalNum-5].y) + heightScale(dataLower[totalNum-5].y) - 20);
-    canvas.drawingContext.setLineDash([5, 5]);
-    // area
+    // setupObstacle
+    stroke("black");
+    strokeWeight(5);
+    for(let i = parseInt(totalNum/2);i<totalNum-1;i++){
+        line(widthScale(x[i]), heightScale(obstacleUpper[i].y), widthScale(x[i+1]), heightScale(obstacleUpper[i+1].y));
+        line(widthScale(x[i]), heightScale(obstacleLower[i].y), widthScale(x[i+1]), heightScale(obstacleLower[i+1].y));
+        }
+    // selection
+    stroke("grey");
     fill("grey");
-    ellipse(widthScale(x[5]), heightScale(streamLineMid[5].y),50, heightScale(dataUpper[5].y) - heightScale(dataLower[5].y));
-    ellipse(widthScale(x[totalNum-5]), heightScale(streamLineMid[totalNum-5].y),50, heightScale(dataUpper[totalNum-5].y) - heightScale(dataLower[totalNum-5].y));
-    canvas.drawingContext.setLineDash([0, 0]);
-    // radius
-// r1
-    fill("black");
-    line(widthScale(x[5]), heightScale(streamLineMid[5].y), widthScale(x[5]), heightScale(dataUpper[5].y));
-    text('r1', widthScale(x[5]) + 5, heightScale(streamLineMid[5].y));
-// r2
-    line(widthScale(x[totalNum-5]), heightScale(streamLineMid[totalNum-5].y), widthScale(x[totalNum-5]), heightScale(dataUpper[totalNum-5].y));
-    text('r1', widthScale(x[totalNum-5]) - 20, heightScale(streamLineMid[totalNum-5].y));}
+    for(let i=0;i<totalNum-1;i++){
+        rect(widthScale(x[i]), heightScale(obstacleLower[i].y), widthScale(x[i+1]) - widthScale(x[i]), heightScale(obstacleUpper[i].y) - heightScale(obstacleLower[i].y));
+    }
+}
 
 
     // incSlider = createSlider(30, 100, 30);
@@ -102,20 +85,6 @@ function draw(){
     // fill("grey");
     // for(let i=startPos;i<lenOfSection+startPos;i++){
     //     rect(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]) - widthScale(x[i]), heightScale(dataUpper[i].y) - heightScale(dataLower[i].y));
-    // }
-
-        // setupObstacle
-    // stroke("black");
-    // strokeWeight(5);
-    // for(let i = 0;i<totalNum-1;i++){
-    //     line(widthScaleObs(x[i]), heightScaleObs(obstacleUpper[i].y), widthScaleObs(x[i+1]), heightScaleObs(obstacleUpper[i+1].y));
-    //     line(widthScaleObs(x[i]), heightScaleObs(obstacleLower[i].y), widthScaleObs(x[i+1]), heightScaleObs(obstacleLower[i+1].y));
-    //   }
-    // selection
-    // stroke("grey");
-    // fill("grey");
-    // for(let i=0;i<totalNum-1;i++){
-    //     rect(widthScaleObs(x[i]), heightScaleObs(obstacleLower[i].y), widthScaleObs(x[i+1]) - widthScaleObs(x[i]), heightScaleObs(obstacleUpper[i].y) - heightScaleObs(obstacleLower[i].y));
     // }
     // drawStreamLines
     // stroke("yellow");

@@ -6,44 +6,9 @@
 //     d3.select("#rightMain").style("visibility", "hidden");
 //     expanded = !expanded;
 // });
-d3.select(".slider").on("input",function(){
-    let value = d3.select(this).property("value");
-    switch(value){
-        case "0":
-            d3.select(".step1").style("visibility","hidden");
-            d3.select(".step2").style("visibility","hidden");
-            d3.select(".step3").style("visibility","hidden");
-            d3.select(".heatEq").style("visibility","hidden");
-            break;
-        case "1":
-            d3.select(".step1").style("visibility","visible");
-            d3.select(".step2").style("visibility","hidden");
-            d3.select(".step3").style("visibility","hidden");
-            d3.select(".heatEq").style("visibility","hidden");
-            break;
-        case "2":
-            d3.select(".step1").style("visibility","visible");
-            d3.select(".step2").style("visibility","visible");
-            d3.select(".step3").style("visibility","hidden");
-            d3.select(".heatEq").style("visibility","hidden");
-            break;
-        case "3":
-            d3.select(".step1").style("visibility","visible");
-            d3.select(".step2").style("visibility","visible");
-            d3.select(".step3").style("visibility","visible");
-            d3.select(".heatEq").style("visibility","hidden");
-            break;
-        case "4":
-            d3.select(".step1").style("visibility","visible");
-            d3.select(".step2").style("visibility","visible");
-            d3.select(".step3").style("visibility","visible");
-            d3.select(".heatEq").style("visibility","visible");
-            break;
-    }
-});
 //canvas dims
-var canvasWidth = window.innerWidth/2.8;
-var canvasHeight = window.innerHeight/2.3;
+var canvasWidth = window.innerWidth/2;
+var canvasHeight = window.innerHeight/2;
 var graphOffeset = 50;
 //define the entire canvas(right side)
 var canvas = d3.select("#system")
@@ -67,9 +32,10 @@ canvas.append("g")
             .append("rect")
             .attr("width", canvasWidth)
             .attr("height", canvasHeight)
-            .attr("fill", "#abdcff")
+            .attr("fill", "white")
             .attr("stroke", "black")
             .attr("stroke-width", "3px");
+
 //Params
 var rho = 997;
 var p1 = 100;
@@ -138,8 +104,8 @@ var pipeSection = canvas.append("g")
             .attr("x1",(d) => (widthScale(x1(d)))).attr("x2",(d) => (widthScale(x2(d))))
             .attr("y1",(d) => (heightScale(y1(d)))).attr("y2",(d) => (heightScale(y2(d))))
             .attr("fill","none")
-            .attr("stroke","red")
-            .attr("stroke-width", 2);
+            .attr("stroke",(d) => pipeSectionColor(d))
+            .attr("stroke-width", 5);
 var line = d3.line()
             .x( d => widthScale(d.x))
             .y( d => heightScale(d.y));
@@ -194,26 +160,22 @@ canvas.append("g")
 //middle greyed out portion
 //pipe color
 let silverColor = "rgb(138,138,138)";
-let silverColorCenter = "rgb(237,237,237)";
-let pipeGradient = d3.select("#system").append("defs").append("linearGradient")
-            .attr("id", "pipeGradient")
-            .attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-pipeGradient.append("stop")
-        .attr("offset", "0%").style("stop-color", silverColor).style("stop-opacity", "1")
-pipeGradient.append("stop")
-        .attr("offset", "50%").style("stop-color", silverColorCenter).style("stop-opacity", "1");
-pipeGradient.append("stop")
-        .attr("offset", "100%").style("stop-color", silverColor).style("stop-opacity", "1");
+// let silverColorCenter = "rgb(237,237,237)";
+// let pipeGradient = d3.select("#system").append("defs").append("linearGradient")
+//             .attr("id", "pipeGradient")
+//             .attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+// pipeGradient.append("stop")
+//         .attr("offset", "0%").style("stop-color", silverColor).style("stop-opacity", "1")
+// pipeGradient.append("stop")
+//         .attr("offset", "50%").style("stop-color", silverColorCenter).style("stop-opacity", "1");
+// pipeGradient.append("stop")
+//         .attr("offset", "100%").style("stop-color", silverColor).style("stop-opacity", "1");
 
 var greySectionArray = [
-    {x: x1(0),y: y1(0)},
     {x: x1(1),y: y1(1)},
     {x: x2(1),y: y2(1)},
-    {x: x2(2),y: y2(2)},
-    {x: x2(5),y: y2(5)},
     {x: x2(4),y: y2(4)},
-    {x: x1(4),y: y1(4)},
-    {x: x1(3),y: y1(3)}
+    {x: x1(4),y: y1(4)}
 ];
 var greySection = canvas.append("g")
         .selectAll(".greySection")
@@ -222,7 +184,7 @@ var greySection = canvas.append("g")
             .append("path")
             .attr("class", "greySection")
             .attr("d", line)
-            .attr("fill","grey").style("opacity", "50%");
+            .attr("fill",silverColor);
 //slider input
 d3.select("#r2").on("input", () => {
     r2 = parseFloat(d3.select("#r2").property("value"));
@@ -231,7 +193,6 @@ d3.select("#r2").on("input", () => {
     changeGreySection();
     changeVelocity();
     changeValues();
-    changeArea();
 });
 d3.select("#r1").on("input", () => {
     r1 = parseFloat(d3.select("#r1").property("value"));
@@ -240,7 +201,6 @@ d3.select("#r1").on("input", () => {
     changeGreySection();
     changeVelocity();
     changeValues();
-    changeArea();
 });
 d3.select("#h1").on("input", () => {
     h1 = parseFloat(d3.select("#h1").property("value"));
@@ -249,7 +209,6 @@ d3.select("#h1").on("input", () => {
     changeGreySection();
     changeVelocity();
     changeValues();
-    changeArea();
 });
 d3.select("#h2").on("input", () => {
     h2 = parseFloat(d3.select("#h2").property("value"));
@@ -258,23 +217,22 @@ d3.select("#h2").on("input", () => {
     changeGreySection();
     changeVelocity();
     changeValues();
-    changeArea();
 });
-d3.select("#v1").on("input", () => {
-    v1dj = parseFloat(d3.select("#v1").property("value"));
-    d3.select("#v1_input").html(v1dj);
-    changeVelocity();
-    changeValues();
-    // changePipe();
-    // changeGreySection();
-});
-d3.select("#p1").on("input", () => {
-    p1 = parseFloat(d3.select("#p1").property("value"));
-    d3.select("#p1_input").html(p1);
-    changeValues();
-    // changePipe();
-    // changeGreySection();
-});
+// d3.select("#v1").on("input", () => {
+//     v1dj = parseFloat(d3.select("#v1").property("value"));
+//     d3.select("#v1_input").html(v1dj);
+//     changeVelocity();
+//     changeValues();
+//     // changePipe();
+//     // changeGreySection();
+// });
+// d3.select("#p1").on("input", () => {
+//     p1 = parseFloat(d3.select("#p1").property("value"));
+//     d3.select("#p1_input").html(p1);
+//     changeValues();
+//     // changePipe();
+//     // changeGreySection();
+// });
 //changePipe
 function changePipe(){
     pipeSection.data(pipeSectionArray)
@@ -283,14 +241,10 @@ function changePipe(){
 }
 function changeGreySection(){
     greySectionArray = [
-        {x: x1(0),y: y1(0)},
         {x: x1(1),y: y1(1)},
         {x: x2(1),y: y2(1)},
-        {x: x2(2),y: y2(2)},
-        {x: x2(5),y: y2(5)},
         {x: x2(4),y: y2(4)},
-        {x: x1(4),y: y1(4)},
-        {x: x1(3),y: y1(3)}
+        {x: x1(4),y: y1(4)}
     ];
     greySection.data([greySectionArray]).attr("d", line);  
 }
@@ -329,32 +283,3 @@ function changeValues(){
     p2 = p1 + (rho*9.8*h1) + (0.5*rho*Math.pow(v1dj,2)) - (rho*9.8*h2) - (0.5*rho*Math.pow(v2dj,2));
     d3.select("#p2").html(p2.toFixed(2));
 }
-function changeArea(){
-    A1.attr("cy", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
-            .attr("ry", widthScale(r1));
-
-    A2.attr("cy", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
-            .attr("ry", widthScale(r2));
-}
-//plot cross-section------------------------------------------------>left
-var A1 = canvas.append("g")
-            .append("ellipse")
-            .attr("class", ".dataPointer")
-            .attr("cx", 20)
-            .attr("cy", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
-            .attr("rx", 20)
-            .attr("ry", widthScale(r1))
-            .attr("fill","none")
-            .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
-            .attr("fill", "grey");
-//plot cross-section------------------------------------------------>right
-var A2 = canvas.append("g")
-            .append("ellipse")
-            .attr("class", ".dataPointer")
-            .attr("cx", canvasWidth - 20)
-            .attr("cy", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
-            .attr("rx", 20)
-            .attr("ry", widthScale(r2))
-            .attr("fill","none")
-            .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
-            .attr("fill", "grey");

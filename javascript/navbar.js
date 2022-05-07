@@ -9,7 +9,9 @@ document.getElementById('track').setAttribute('stroke','#007a85')
 window.addEventListener("load", ()=>{
     let link = [
         "/02_reality.html",
+        "/03_idealizationYY.html",
         "/03_idealization.html",
+        // "/03_idealization3.html",
         "/03_idealization2.html",
         "/04_descretization.html",
         "/04_descretization2.html",
@@ -32,12 +34,15 @@ window.addEventListener("load", ()=>{
             i=1;
             break;
         case link[3]:
-        case link[4]:
-        case link[5]:
             i=2;
             break;
+        case link[4]:
+        case link[5]:
         case link[6]:
+            i=3;
+            break;
         case link[7]:
+        case link[8]:
             i=4;
             break;
         // case link[8]:
@@ -59,7 +64,9 @@ window.addEventListener("load", ()=>{
 var link = [
     "/01_overview.html",
     "/02_reality.html",
+    "/03_idealizationYY.html",
     "/03_idealization.html",
+    // "/03_idealization3.html",
     "/03_idealization2.html",
     "/04_descretization.html",
     "/04_descretization2.html",

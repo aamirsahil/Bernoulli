@@ -3,6 +3,10 @@ var canvas = d3.select("#system")
                 .attr("width",canvasWidth)
                 .attr("height",canvasHeight)
                 .style("overflow","visible");
+canvas.append("rect")
+                .attr("x",0).attr("y",0)
+                .attr("width", canvasWidth).attr("height",canvasHeight)
+                .attr("fill", "#abdcff");
 //the position axis
 var axisX = d3.axisBottom(widthScale)
             .ticks(5);

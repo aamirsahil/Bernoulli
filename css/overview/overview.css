@@ -87,3 +87,6 @@ h1 {
     top: 850%; 
     right: 15%;
 }
+img:hover{
+    box-shadow: -10px -10px 10px 5px rgb(91, 91, 91);
+}

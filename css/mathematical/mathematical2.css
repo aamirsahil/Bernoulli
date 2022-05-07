@@ -1,5 +1,5 @@
 #leftMain{
-    font-size: 1.75vh;
+    font-size: 2.3vh;
     padding: 20px;
   }
 #rightMain{
@@ -42,7 +42,27 @@
   font-size: 1.9vh;
   margin: 1vh;
 }
-.params{
-  position: fixed;
-  margin: 10px;
+
+.item0 { grid-area: param; }
+.item1 { grid-area: svg; }
+.item2 { grid-area: value1; }
+.item3 { grid-area: value2; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'param param'
+    'svg svg'
+    'svg svg'
+    'value1 value2';
+  gap: 1px;
+  background-color: #9ea9b1;
+  padding: 1px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
 }

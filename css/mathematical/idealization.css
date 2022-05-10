@@ -135,3 +135,7 @@
   height: 100%;
   width: 100%;
 }
+@keyframes lift {
+  from {transform: translateY(0px);}
+  to {transform: translateY(-20px);}
+}

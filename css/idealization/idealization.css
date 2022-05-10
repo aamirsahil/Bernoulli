@@ -124,7 +124,7 @@
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 1px 0;
+  padding: 10px 0;
 }
 #rightMain{
   width: 90%

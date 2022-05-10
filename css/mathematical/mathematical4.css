@@ -1,5 +1,5 @@
 #leftMain{
-    font-size: 2.3vh;
+    font-size: 2.2vh;
     padding: 20px;
   }
 #rightMain{
@@ -12,12 +12,8 @@
   .expand:hover{
     cursor: pointer;
   }
-  .step1,.step2,.step3,.heatEq{
-    visibility: hidden;
-  }
   .heatEq{
     font-size: large;
-    background-color: bisque;
   }
   .instru{
     margin: 20px;
@@ -45,28 +41,30 @@
   margin: 1vh;
 }
 
-.item1 { grid-area: svg }
+.item0 { grid-area: param; }
+.item1 { grid-area: svg; }
+.item2 { grid-area: value1; }
+.item3 { grid-area: value2; }
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    'svg';
-    gap: 1px;
-    background-color: #9ea9b1;
-    padding: 1px;
+    'param param'
+    'svg svg'
+    'svg svg'
+    'value1 value2';
+  gap: 1px;
+  background-color: #9ea9b1;
+  padding: 1px;
 }
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 15px 0;
+  padding: 5px 0;
+  font-size: 20px;
 }
-@keyframes forceMoveLeft {
-  from {transform: translateX(0px);}
-  to {transform: translateX(10px);}
-}
-
-@keyframes forceMoveRight {
-  from {transform: translateX(0px);}
-  to {transform: translateX(-10px);}
+.eq{
+  text-align: center;
+  padding: 5px;
 }

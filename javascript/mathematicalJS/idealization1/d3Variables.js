@@ -15,7 +15,7 @@ var plotFluidPointsObs = canvas.append("g")
                 .append("circle")
                 .attr("class", "plotPointObs")
                 .attr("cx",d => d.x1).attr("cy", d => d.y1)
-                .attr("r", 5).attr("fill", "black").style("visibility", "hidden");
+                .attr("r", 5).attr("fill", "black");
 // plot the lines that represent the vectors
 var plotFluidVelocityObs = canvas.append("g")
         .selectAll(".plotVelocityObs")
@@ -29,7 +29,7 @@ var plotFluidVelocityObs = canvas.append("g")
                 .attr("y2", d => d.y2)
                 .attr("fill","none")
                 .attr("stroke", "red")
-                .attr("stroke-width", 2).style("visibility", "hidden").attr("marker-end","url(#arrow)");
+                .attr("stroke-width", 2).attr("marker-end","url(#arrow)");
 // plot the circles that represent the points
 var plotFluidPointsLinear = canvas.append("g")
         .selectAll(".plotPointLinear")
@@ -85,7 +85,7 @@ var streamText = canvas.append("g")
                 .attr("x", widthScale(completeData[5][50].x))
                 .attr("y", heightScale(completeData[5][50].y + 0.5))
                 .attr("dy", ".35em")
-                .text( "Streamline").attr("font-weight", "bold")
+                .text( "Streamline A").attr("font-weight", "bold")
                 .style("fill", "#035704").style("visibility", "hidden");
 // 2nd streamLine
 // no obstacle
@@ -119,7 +119,7 @@ var streamText2 = canvas.append("g")
                 .attr("x", widthScale(completeData[3][50].x))
                 .attr("y", heightScale(completeData[3][50].y + 0.5))
                 .attr("dy", ".35em")
-                .text( "Streamline").attr("font-weight", "bold")
+                .text( "Streamline B").attr("font-weight", "bold")
                 .style("fill", "#035704").style("visibility", "hidden");
 
 // airFoil
@@ -136,5 +136,28 @@ var obstacleText = canvas.append("g")
                 .attr("dy", ".15em")
                 .text( "Obstacle")
                 .style("fill", "black");
+var liftData = [...Array(5).keys()].map( d => (d*canvasWidth/5 + 50));
+var lift = canvas.append("g")
+        .selectAll(".lift")
+        .data(liftData)
+        .enter()
+                .append("line")
+                .attr("class", "lift")
+                .attr("x1", d => d)
+                .attr("x2", d => d)
+                .attr("y1", canvasHeight/2 + 50)
+                .attr("y2", (canvasHeight/2))
+                .attr("fill","none")
+                .attr("stroke", "black").style("animation", "lift 2s infinite")
+                .attr("stroke-width", 5).attr("marker-end","url(#arrow)").style("visibility", "hidden");
 // animate command
 animate();
+// text that says lift
+var liftText = canvas.append("g")
+                .append("text")
+                .style("font-size", "2rem")
+                .attr("x", canvasWidth/2.2)
+                .attr("y", canvasHeight/2 + 70)
+                .attr("dy", ".15em")
+                .text( "Lift")
+                .style("fill", "black").style("visibility", "hidden");

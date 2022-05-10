@@ -16,6 +16,11 @@ d3.select("#myRange").on("input", () => {
         setText(1);
         setMarker(0);
         setPic(1);
+
+        streamText.style("visibility", "visible");
+        streamText2.style("visibility", "visible");
+        plotCompleteStreamLine.style("visibility", "visible");
+        plotCompleteStreamLine2.style("visibility", "visible");
     }
     else if(length > sliderRange[2] && length <= sliderRange[3]){
         setText(2);
@@ -47,18 +52,13 @@ d3.select("#myRange").on("input", () => {
         setText(7);
         setMarker(6);
         setPic(7);
+
+        hideAll();
     }
 });
-function setPic(i){
-        let picState = [...Array(7).keys()].map((d) => (d<=i)?"hidden":"visible");
-        for(let j=1;j<8;j++)
-                d3.select("#pic"+(j)).style("visibility", picState[j]);
-}
-function setOpacity(opacity,i,j){
-    opacity = (opacity - sliderRange[i])/(sliderRange[j] - sliderRange[i])*100;
-    return opacity;
-}
+function setPic(){
 
+}
 function setMarker(i){
     let markerState = [...Array(8).keys()].map((d) => (d<=i)?blueSel:greyUnCel);
     for(let i=0;i<7;i++)
@@ -71,14 +71,138 @@ function setText(i){
             d3.select("#point0"+(j)).style("visibility", textState[j]);
 }
 
+function hideAll(){
+    plotFluidVelocityObs.style("visibility", "hidden");
+    plotFluidPointsObs.style("visibility", "hidden");
+    animateOn = false;
+
+    lift.style("visibility", "visible");
+    liftText.style("visibility", "visible");
+}
+
 function resetAll(){
     for(let i=0;i<7;i++){
             d3.select("#marker"+(i+2)).style("fill", greyUnCel);
             d3.select("#point0"+(i+1)).style("visibility", "hidden");
     }
     d3.select("#point05").style("visibility", "hidden");
+
+    streamText.style("visibility", "hidden");
+    streamText2.style("visibility", "hidden");
+    plotCompleteStreamLine.style("visibility", "hidden");
+    plotCompleteStreamLine2.style("visibility", "hidden");
+
+    plotFluidVelocityObs.style("visibility", "visible");
+    plotFluidPointsObs.style("visibility", "visible");
+    animateOn = true;
+
+    lift.style("visibility", "hidden");
+    liftText.style("visibility", "hidden");
+}
+function animateStart(val){
+    animateOn = val;
+}
+function setOpacity(opacity,i,j){
+    opacity = (opacity - sliderRange[i])/(sliderRange[j] - sliderRange[i])*100;
+    return opacity;
 }
 
+// streamLines curved
+function f(x,a = -3,d = 0,b = -1,c = 3){
+    let exp = Math.pow(x-b, 2)/2/Math.pow(c, 2);
+    return a*Math.exp(-exp) + d;
+}
+//fluid Points
+function createFluidPoints(x0 = 0){
+    let temp = [];
+    for(let i = 0; i<streamLen; i++){
+            let speed = (i<5)?0.75:1.75;
+            temp.push([...Array(distData[i].num).keys()].map((d) => {
+                    let x1 = d*distData[i].dist + (speed*x0)%distData[i].dist;
+                    let x2 = x1 + distData[i].dist*0.5;
+                    let firstIndex = bisect(x, widthScaleReverse(x1));
+                    let lastIndex = Math.min(bisect(x, widthScaleReverse(x2)), totalNum - 1);
+                    return {
+                            x1: x1, 
+                            y1: heightScale(completeData[i][firstIndex].y),
+                            x2: x2,
+                            y2: heightScale(completeData[i][lastIndex].y)
+                    }
+            }
+            ));
+    }
+    return Array.prototype.concat.apply([], temp);
+}
+//fluid Points Linear
+function createFluidPointsLinear(x0 = 0){
+        let temp = [];
+        for(let i = 0; i<streamLen; i++){
+                temp.push([...Array(linearDist.num).keys()].map((d) => {
+                        let x1 = d*linearDist.dist + (x0)%linearDist.dist;
+                        let x2 = x1 + linearVelLength;
+                        let firstIndex = bisect(x, widthScaleReverse(x1));
+                        let lastIndex = Math.min(bisect(x, widthScaleReverse(x2)), totalNum - 1);
+
+                        return {
+                        x1: x1, 
+                        y1: heightScale(linearData[i][firstIndex].y),
+                        x2: x2,
+                        y2: heightScale(linearData[i][lastIndex].y)
+                }
+                }
+                ));
+}
+return Array.prototype.concat.apply([], temp);
+}
+// create a set of streamLines
+function createFoilFlow(){
+    for( let a = -5; a<5; a += (a<0)?1:0.5){
+            if(a>-1 && a<1.5) 
+                    continue;
+            let sep = (a<0)?a/5:a/10;
+            let data = x.map( (d) => ({x: d, y: f(d, a, sep)}));
+
+            completeData.push(data);
+    }
+}
+
+function createLinearFlow(){
+for( let a = -5; a <= 6; a += 1){
+        let data = x.map( (d) => ({x: d, y: a}));
+
+        linearData.push(data);
+}
+}
+function moveParticles(){
+        if(switchSate){
+                fluidPointsObs = createFluidPoints(frame);
+                plotFluidPointsObs.data(fluidPointsObs)
+                        .attr("cx",d => d.x1).attr("cy", d => d.y1);
+                plotFluidVelocityObs.data(fluidPointsObs)
+                        .attr("x1", (d,i) => d.x1)
+                        .attr("x2", (d,i) => d.x2)
+                        .attr("y1", (d,i) => d.y1)
+                        .attr("y2", (d,i) => d.y2);
+        }
+        else{
+                fluidPointsLinear = createFluidPointsLinear(frame);
+                plotFluidPointsLinear.data(fluidPointsLinear)
+                        .attr("cx",d => d.x1).attr("cy", d => d.y1);
+                plotFluidVelocityLinear.data(fluidPointsLinear)
+                        .attr("x1", d => d.x1)
+                        .attr("x2", d => d.x2)
+                        .attr("y1", d => d.y1)
+                        .attr("y2", d => d.y2);
+        }
+}
+
+
+function animate(){
+    if(animateOn)
+        frame += frameSpeed;
+    moveParticles();
+    requestAnimationFrame(animate);
+}
 // make everything fit on resizing
 function svgResize()
 {

@@ -1,7 +1,8 @@
 d3.select("#switch").on("input", () => {
     switchSate = !switchSate;
-    (switchSate)?airFoil.style("visibility", "visible"):airFoil.style("visibility", "hidden");
     if(switchSate){
+        obstacleText.style("visibility", "visible");
+        airFoil.style("visibility", "visible");
         fluidPointsObs = createFluidPoints();
         plotFluidPointsObs.style("visibility","visible");
         plotFluidVelocityObs.style("visibility","visible");
@@ -9,6 +10,8 @@ d3.select("#switch").on("input", () => {
         plotFluidVelocityLinear.style("visibility","hidden");
     }
         else{
+                obstacleText.style("visibility", "hidden");
+                airFoil.style("visibility", "hidden");
                 fluidPointsObsLinear = createFluidPointsLinear();
                 plotFluidPointsLinear.style("visibility","visible");
                 plotFluidVelocityLinear.style("visibility","visible");
@@ -17,13 +20,21 @@ d3.select("#switch").on("input", () => {
         }
     streamText.attr("x", (switchSate)?widthScale(completeData[5][50].x):widthScale(linearData[5][50].x))
             .attr("y", (switchSate)?heightScale(completeData[5][50].y + 0.5):heightScale(linearData[5][50].y + 0.5));
+streamText2.attr("x", (switchSate)?widthScale(completeData[3][50].x):widthScale(linearData[3][50].x))
+            .attr("y", (switchSate)?heightScale(completeData[3][50].y + 0.5):heightScale(linearData[3][50].y + 0.5));
     if(switchSate){
             plotCompleteStreamLine.style("visibility","visible");
             plotLinearStreamLine.style("visibility","hidden");
+
+            plotCompleteStreamLine2.style("visibility","visible");
+            plotLinearStreamLine2.style("visibility","hidden");
     }
     else{
             plotLinearStreamLine.style("visibility","visible");
             plotCompleteStreamLine.style("visibility","hidden");
+
+            plotLinearStreamLine2.style("visibility","visible");
+            plotCompleteStreamLine2.style("visibility","hidden");
     }
     frame = 0;
 });
@@ -35,11 +46,12 @@ d3.select("#myRange").on("input", () => {
     let length = value/(max - min);
 
     if(length == (sliderRange[0])){
-            resetAll(plotFluidPointsObs,plotFluidVelocityObs,plotFluidPointsLinear,plotFluidVelocityLinear,plotLinearStreamLine,plotCompleteStreamLine,streamText);
+            resetAll(plotFluidPointsObs,plotFluidVelocityObs,plotFluidPointsLinear,plotFluidVelocityLinear,plotLinearStreamLine,plotCompleteStreamLine,streamText,
+                plotLinearStreamLine2,plotCompleteStreamLine2,streamText2);
     }
     else if(length > sliderRange[0] && length <= sliderRange[1]){
         setText(0);
-            d3.select("#river").style("opacity", setOpacity(length, 1, 0) + "%");
+        setMarker(-1);
     }
     else if(length > sliderRange[1] && length <= sliderRange[2]){
         setText(1);
@@ -65,22 +77,37 @@ d3.select("#myRange").on("input", () => {
         setMarker(1);
         animateStart(true);
             //set streamLine
-            if(switchSate)
-                    plotCompleteStreamLine.style("visibility","hidden");
-            else
-                    plotLinearStreamLine.style("visibility","hidden");
+            if(switchSate){
+                plotCompleteStreamLine.style("visibility","hidden");
+                plotLinearStreamLine2.style("visibility","hidden");
+            }
+                    
+            else{
+                plotLinearStreamLine.style("visibility","hidden");
+                plotLinearStreamLine2.style("visibility","hidden");
+            }
+                    
 
         streamText.style("visibility","hidden");
+        streamText2.style("visibility","hidden");
+
     }
     else if(length > sliderRange[3] && length < sliderRange[4]){
             setText(3);
             setMarker(2);
             //set streamLine
-            if(switchSate)
-                    plotCompleteStreamLine.style("visibility","visible");
-            else
-                    plotLinearStreamLine.style("visibility","visible");
+            if(switchSate){
+                plotCompleteStreamLine.style("visibility","visible");
+                plotCompleteStreamLine2.style("visibility","visible");
+
+            }
+            else{
+                plotLinearStreamLine.style("visibility","visible");
+                plotLinearStreamLine2.style("visibility","visible");
+
+            }
             streamText.style("visibility","visible");
+            streamText2.style("visibility","visible");
     }
     else{
             setText(4);
@@ -221,7 +248,8 @@ function setText(i){
             d3.select("#point0"+(j+1)).style("visibility", textState[j]);
 }
 
-function resetAll(plotFluidPointsObs,plotFluidVelocityObs,plotFluidPointsLinear,plotFluidVelocityLinear,plotLinearStreamLine,plotCompleteStreamLine,streamText){
+function resetAll(plotFluidPointsObs,plotFluidVelocityObs,plotFluidPointsLinear,plotFluidVelocityLinear,plotLinearStreamLine,plotCompleteStreamLine,streamText
+        ,plotLinearStreamLine2,plotCompleteStreamLine2,streamText2){
     for(let i=0;i<4;i++){
             d3.select("#marker"+(i+2)).style("fill", greyUnCel);
             d3.select("#point0"+(i+1)).style("visibility", "hidden");
@@ -230,6 +258,10 @@ function resetAll(plotFluidPointsObs,plotFluidVelocityObs,plotFluidPointsLinear,
     plotLinearStreamLine.style("visibility", "hidden");
     plotCompleteStreamLine.style("visibility", "hidden");
     streamText.style("visibility", "hidden");
+
+    plotLinearStreamLine2.style("visibility", "hidden");
+    plotCompleteStreamLine2.style("visibility", "hidden");
+    streamText2.style("visibility", "hidden");
 
     plotFluidPointsObs.style("visibility", "hidden");
     plotFluidVelocityObs.style("visibility", "hidden");

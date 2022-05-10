@@ -19,5 +19,5 @@ let sliderStartPos = 0.53;
 let sliderEndPos = 0.56;
 let sliderWidth = totalLen - sectionWidthLen + startPos; 
 //canvas dims
-var canvasWidth = window.innerWidth/2.1;
+var canvasWidth = window.innerWidth/2.4;
 var canvasHeight = window.innerHeight/1.5;

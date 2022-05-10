@@ -20,6 +20,7 @@ window.addEventListener("load", ()=>{
         // "/05_geometric2.html",
         // "/06_mathematical.html",
         "/06_mathematical2.html",
+        "/06_mathematical4.html",
         "/06_mathematical3.html",
     ];
     
@@ -43,6 +44,7 @@ window.addEventListener("load", ()=>{
             break;
         case link[7]:
         case link[8]:
+        case link[9]:
             i=4;
             break;
         // case link[8]:
@@ -75,6 +77,7 @@ var link = [
     // "/05_geometric2.html",
     // "/06_mathematical.html",
     "/06_mathematical2.html",
+    "/06_mathematical4.html",
     "/06_mathematical3.html",
     "/07_summary.html"
 ];

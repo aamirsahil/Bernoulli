@@ -25,7 +25,7 @@ function draw(){
     background(cavasColor);
     // pipe
     noStroke();
-    fill(184, 182, 182, 50);
+    fill(93, 94, 94, 75);
     for(let i=0;i<totalNum-1;i++){
         rect(widthScale(x[i]), heightScale(dataLower[i].y), widthScale(x[i+1]) - widthScale(x[i]), heightScale(dataUpper[i].y) - heightScale(dataLower[i].y));
     }
@@ -65,7 +65,14 @@ function draw(){
     });
     velPointsLow.map( (d) => {
         ellipse(widthScale(d.x), heightScale(d.y), 5, 5);
+        // vectors
     });
+
+    // let v0 = createVector(widthScale(velPointsLow[0].x), heightScale(velPointsLow[0].y));
+    // let v1 = createVector(mouseX, mouseY);
+    // drawArrow(v0, v1, 'black');
+
+
     // height
     strokeWeight(1);
     textSize(20);

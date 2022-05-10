@@ -199,7 +199,6 @@ d3.select("#r2").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
-    changeValues();
     changeArea();
     setEq();
 });
@@ -209,7 +208,6 @@ d3.select("#r1").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
-    changeValues();
     changeArea();
     setEq();
 });
@@ -219,7 +217,6 @@ d3.select("#h1").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
-    changeValues();
     changeArea();
     setEq();
 });
@@ -229,7 +226,6 @@ d3.select("#h2").on("input", () => {
     changePipe();
     changeGreySection();
     changeVelocity();
-    changeValues();
     changeArea();
     setEq();
 });
@@ -237,7 +233,6 @@ d3.select("#v1").on("input", () => {
     v1dj = parseFloat(d3.select("#v1").property("value"));
     d3.select("#v1_input").html(v1dj);
     changeVelocity();
-    changeValues();
     setEq();
     // changePipe();
     // changeGreySection();
@@ -245,7 +240,6 @@ d3.select("#v1").on("input", () => {
 d3.select("#p1").on("input", () => {
     p1 = parseFloat(d3.select("#p1").property("value"));
     d3.select("#p1_input").html(p1);
-    changeValues();
     setEq();
     // changePipe();
     // changeGreySection();
@@ -257,10 +251,13 @@ function setEq(){
     let v2 = (A1/A2*v1dj).toFixed(2);
     let p2 = (p1 + (rho*9.8*h1) + (0.5*rho*Math.pow(v1dj,2)) - (rho*9.8*h2) - (0.5*rho*Math.pow(v2,2))).toFixed(2);
 
+    d3.select("#v2").html(v2);
     d3.select("#eqA1").html(A1);
     d3.select("#eqA2").html(A2);
     d3.select("#eqv2").html(v2);
     d3.select("#eqp2").html(p2);
+    d3.select("#p2").html(p2);
+
 }
 //changePipe
 function changePipe(){
@@ -310,11 +307,6 @@ function changeVelocity(){
                 .attr("cy", (d) => heightScale(d.y))
                 .attr("r", 2.5)
                 .attr("fill", "blue");
-}
-function changeValues(){
-    d3.select("#v2").html(v2dj.toFixed(2));
-    p2 = p1 + (rho*9.8*h1) + (0.5*rho*Math.pow(v1dj,2)) - (rho*9.8*h2) - (0.5*rho*Math.pow(v2dj,2));
-    d3.select("#p2").html(p2.toFixed(2));
 }
 function changeArea(){
     A1.attr("cy", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))

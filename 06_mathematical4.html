@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algebra</title>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: { inlineMath: [["\\(","\\)"]] } }); </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mathematical/mathematical4.css">
+
+</head>
+<body>
+<div class="container-fluid">
+<!--    The Navigation Bar  -->
+
+<div class="row" id="navbar">
+    <div class="col-md-2 navbar"><a href="01_overview.html"><img id="start" src="tifr-logo-black.png" alt="dummy.jpg"></a></div>
+    <div class="col-md-2"><a href="02_reality.html"><img id="img1" src="images\navbar\navbar01.jpg" alt="dummy.jpg"><div class="content" id="text1"></div></a></div>
+    <div class="col-md-2"><a href="03_idealizationYY.html"><img id="img2" src="images\navbar\navbar02.jpg" alt="dummy.jpg"><div class="content" id="text2"></div></a></div>
+    <div class="col-md-2"><a href="03_idealization2.html"><img id="img3" src="images\navbar\navbar03.jpg" alt="dummy.jpg"><div class="content" id="text3"></div></a></div>
+    <div class="col-md-2"><a href="04_descretization.html"><img id="img4" src="images\navbar\navbar04.jpg" alt="dummy.jpg"><div class="content" id="text4"></div></a></div>
+    <div class="col-md-2"><a href="06_mathematical2.html"><img id="selected"src="images\navbar\navbar05.jpg" alt="dummy.jpg"><div class="content" id="text5"></div></a></div>
+    
+    <!-- Progress Bar -->
+
+    <svg class="svgNav" width="100%" height="20px">
+        <path id="track" stroke-width="10"></path>
+    </svg>
+
+    <!-- Progress Bar(close) -->
+
+    <!-- NextBtn -->
+    <div class="btnNav" id="nextBtn">
+        <div class="arrow right"></div>
+    </div>
+    <!-- PrevBtn -->
+    <!-- <div class="btnNav" id="prevBtn">
+        <div class="arrow left"></div>
+    </div> -->
+
+</div>
+
+<!--    The Navigation Bar(close)  -->
+
+<!--    Main Body  -->
+    <div class="row" id="Main">
+        <div class="col-md-4" id="leftMain">
+<!--            Derivation  -->
+            <h1>Algebraic formulation</h1>
+            <p>
+                We have,<br>
+                <div class="eq">\( A_1 = \pi r_1^2 = \)<span id="eqA1"> 2</span></div>
+
+                <div class="eq">\( A_2 = \pi r_2^2 = \)<span id="eqA2"> 3</span></div>
+                <div class="step1">
+                    Hence,
+                    <div class="eq">\( v_2 = \frac{A_1v_1}{A_2} = \)<span id="eqv2"> 3</span></div>
+                </div>
+                <div class="step2">
+                    \( \text{From Bernoulli's equation} \)
+                        $$ P_1 + \frac{1}{2}\rho v^2_1 + \rho gh_1 = 
+                        P_2 + \frac{1}{2}\rho v^2_2 + \rho gh_2 $$
+                </div>
+                <div class="step3">
+                    \( \text{Thus} \) $$  P_2 = (\frac{1}{2}\rho v^2_2 + \rho gh_2)
+                     - (P_1 + \frac{1}{2}\rho v^2_1 + \rho gh_1) $$
+                </div>
+                <div class="eq">\( P_2 = \)<span id="eqp2"> 3</span></div>
+            </p>
+<!--            Derivation(end)-->
+        </div>
+<!--        Derivation(close)  -->
+        <div class="col-md-8">
+            <div id="rightMain">
+                <div class="grid-container">
+                    <!-- graph -->
+                    <div class="item0">
+                        <div class="params">
+                            <label>\( \rho \) = 997(water)</label><span></span>
+                            <label>,\( v_2 \) = </label><span id="v2">0.5</span>
+                            <label>,\( P_2 \) = </label><span id="p2">100</span>
+                        </div>
+                    </div>
+                    <div class="item1">
+                        <svg id="system"></svg>
+                    </div>
+                    <div class="item2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="v1" max="1" min="0.1" value="0.5" step="0.1"> \(v_1\) = <span id="v1_input" style="width: 25%;"> 0.5 </div>
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="p1" max="10000" min="100" value="100" step="10"> \(P_1\) = <span id="p1_input" style="width: 25%;"> 100 </div>
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="h1" max="4" min="1" value="2.5" step="0.1"> \(h_1\) = <span id="h1_input" style="width: 25%;">2.5</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="r2" max="1" min="0.1" value="0.5" step="0.1"> \(r_2\) = <span id="r2_input" style="width: 25%;">0.5</span> </div>
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="r1" max="1" min="0.1" value="0.5" step="0.1"> \(r_1\) = <span id="r1_input" style="width: 25%;">0.5</span> </div>
+                              <div class='mt-1'> <input class="rangeIn" type="range" autocomplete="off" id="h2" max="4" min="1" value="2.5" step="0.1"> \(h_2\) = <span id="h2_input" style="width: 25%;">2.5</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<!--    Main Body(close)  -->
+</body>
+<script src="javascript\navbar.js"></script>
+<script src="javascript\mathematicalJS\mathematical4.js"></script>
+<script>
+</script>
+</html>

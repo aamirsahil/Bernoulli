@@ -58,9 +58,9 @@
                 <p>Now lets look at the original problem of airplane lift qualitatively.</p>
                 <ul>
                     <li id="point01">We consider streamlines above and below the airfoil.</li>
-                    <li id="point02">Streamlines above the foil is \(ACB\).</li>
-                    <li id="point03">Streamlines above the foil is \(ADB\).</li>
-                    <li id="point04">Since length of \(ACB\) \(>\) length of \(ADB\).</li>
+                    <li id="point02">Streamlines above the foil is streamline A.</li>
+                    <li id="point03">Streamlines above the foil is streamline B.</li>
+                    <li id="point04">The shape of the streamline determines the velocity of fluid elements.</li>
                     <li id="point05">Velocity above \(>\) Velocity below.</li>
                     <li id="point06">Thus Pressure above \(<\) Pressure below.</li>
                     <li id="point07">Hence a net lift is experienced.</li>
@@ -92,8 +92,23 @@
             <div id="rightMain">
                 <div class="grid-container">
                     <div class="item1">
+                        <svg id="system">
+                            <defs>
+                                <marker
+                                  id="arrow"
+                                  markerUnits="strokeWidth"
+                                  markerWidth="12"
+                                  markerHeight="12"
+                                  viewBox="0 0 12 12"
+                                  refX="6"
+                                  refY="6"
+                                  orient="auto">
+                                  <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #f00;"></path>
+                                </marker>
+                              </defs>
+                        </svg>
                         <!-- river -->
-                        <div id="flowingfluid">
+                        <!-- <div id="flowingfluid">
                             <img class="river" id="pic7" src="images/mathematical/06.png">
                             <img class="river" id="pic6" src="images/mathematical/05.gif">
                             <img class="river" id="pic5" src="images/mathematical/04.png">
@@ -101,7 +116,7 @@
                             <img class="river" id="pic3" src="images/mathematical/02.png">
                             <img class="river" id="pic2" src="images/mathematical/01.png">
                             <img class="river" id="pic1" src="images/mathematical/00.png">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -114,5 +129,7 @@
 </body>
 <script src="javascript\mathematicalJS\idealization1\variableDeclaration.js"></script>
 <script src="javascript\mathematicalJS\idealization1\functionDefs.js"></script>
+<script src="javascript\mathematicalJS\idealization1\idealization.js"></script>
+<script src="javascript\mathematicalJS\idealization1\d3Variables.js"></script>
 <script src="javascript\navbar.js"></script>
 </html>

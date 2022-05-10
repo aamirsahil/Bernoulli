@@ -122,8 +122,10 @@ d3.select('.slider').on("input",function(){
         plane.wingMoving(length);
         setText(1);
     }
-    else
+    else{
         setText(2);
+        d3.select("#sliderWing").style("visibility","visible")
+    }
         
     //set model
     //set scale
@@ -141,8 +143,9 @@ function animate() {
 }
 
 setTimeout(()=>{
+    d3.select(".loader").style("visibility", "hidden")
     animate();
-}, 1000);
+}, 5000);
 
 window.addEventListener("resize", function(){
     let Canvas_Width = document.getElementById('rightMain').offsetWidth - 100;

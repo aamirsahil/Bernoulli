@@ -26,8 +26,8 @@ class Plane{
         loader.load("../../Bernoulli/models/wing/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(3.7,4.7,4.7);
-            gltf.scene.position.set(-3.8, 0.3, 2.3);
-            gltf.scene.rotation.set(degToRad(78.7), 0, 0);
+            gltf.scene.position.set(3.5, 0.3, 2.3);
+            gltf.scene.rotation.set(degToRad(78.7), degToRad(190.5), 0);
             this.wing = gltf.scene;
             this.wing.visible = false;
         });
@@ -41,7 +41,7 @@ class Plane{
     }
     rotate(len){
         len *= (1/sliderRange[1])*90*Math.PI/180;
-        this.plane.rotation.y = -len;
+        this.plane.rotation.y = len;
         // this.wing.rotation.x = -len;
     }
     turnInvisible(){
@@ -58,14 +58,16 @@ class Plane{
     }
     wingMoving(length){
         let len = (length - sliderRange[2])/(sliderRange[3] - sliderRange[2]);
-        let pos = {x: (4 + 3.8)*len + (-3.8),y: 0.3,z: 2.3};
-        let rotX = (92.2 - 78.7)*len + 78.7;
+        let pos = {x: (-3.5 - 3.5)*len + (3.5),y:(-0.2 - 0.3)*len + 0.3,z: 2.3};
+        let rotX = (87.9 - 78.7)*len + 78.7;
         let rotZ = (210)*len;
+        let rotY = (177.9 - 188.8)*len + 188.8;
         let scale = (8.7 - 4.7)*len + 4.7;
 
         this.wing.position.set(pos.x, pos.y, pos.z);
         this.wing.rotation.x = degToRad(rotX);
         this.wing.rotation.z = degToRad(rotZ);
+        this.wing.rotation.y = degToRad(rotY);
         this.wing.scale.set(scale, scale, scale);
     }
     wingViewRot(angle){
@@ -97,13 +99,23 @@ class Camera{
 }
 let camera = new Camera();
 
-var sliderRange = [0, 1/2, 1.2/2, 1]
+var sliderRange = [0, 1/7, 1.2/7, 2/7, 3/7, 4/7, 5/7, 6/7, 1];
+var lenScale = d3.scaleLinear()
+                .domain([0, 1])
+                .range([0, 7]);
+function setMarker(length)
+{
+    let i = parseInt(lenScale(length));
+    let markerState = [...Array(8).keys()].map((d) => (d<=i)?blueSel:greyUnCel);
+    for(let i=0;i<8;i++)
+            d3.select("#marker"+(i+1)).style("fill", markerState[i]);
+}
 d3.select('.slider').on("input",function(){
     let value = d3.select(this).property("value");
     let max = d3.select(this).property("max");
     let min = d3.select(this).property("min");
     let length = value/(max - min);
-
+    setMarker(length);
     
     if(length >= sliderRange[0] && length <= sliderRange[1]){
         //set rotation
@@ -121,10 +133,18 @@ d3.select('.slider').on("input",function(){
     else if(length > sliderRange[2] && length < sliderRange[3]){
         plane.wingMoving(length);
         setText(1);
+        d3.select(".svgStuff").style("visibility","hidden");
+    }
+    else if(length > sliderRange[3] && length < sliderRange[4]){
+        setText(2);
+        d3.select("#sliderWing").style("visibility","visible");
+        d3.select(".svgStuff").style("visibility","hidden");
+        airFoil.style("visibility", "hidden");
+        d3.select(".switchContainer").style("visibility","hidden");
     }
     else{
-        setText(2);
-        d3.select("#sliderWing").style("visibility","visible")
+        d3.select(".svgStuff").style("visibility","visible");
+        setSVGElements(length);
     }
         
     //set model
@@ -139,13 +159,16 @@ function animate() {
     //     p.update();
         // camera.checkBound(p.particle);
     // });
+    if(animateOn)
+        frame += frameSpeed;
+    moveParticles();
     requestAnimationFrame( animate );
 }
 
 setTimeout(()=>{
     d3.select(".loader").style("visibility", "hidden")
     animate();
-}, 5000);
+}, 1000);
 
 window.addEventListener("resize", function(){
     let Canvas_Width = document.getElementById('rightMain').offsetWidth - 100;
@@ -162,20 +185,14 @@ function setText(i){
         case 0:
             d3.select("#point1").style("visibility", "hidden");
             d3.select("#point2").style("visibility", "hidden");
-            d3.select("#marker2").style("fill", "#a6a5a2");
-            d3.select("#marker3").style("fill", "#a6a5a2");
             break;
         case 1:
             d3.select("#point1").style("visibility", "visible");
             d3.select("#point2").style("visibility", "hidden");
-            d3.select("#marker2").style("fill", "#5999e3");
-            d3.select("#marker3").style("fill", "#a6a5a2");
             break;
         case 2:
             d3.select("#point1").style("visibility", "visible");
             d3.select("#point2").style("visibility", "visible");
-            d3.select("#marker2").style("fill", "#5999e3");
-            d3.select("#marker3").style("fill", "#5999e3");
             break;
     }
 }
@@ -185,9 +202,19 @@ function svgResize()
     d3.select("#marker1")
         .attr("x", 0);
     d3.select("#marker2")
-        .attr("x", (1/2)*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (1/7)*d3.select("#pointers").style("width").replace("px", ""));
     d3.select("#marker3")
-        .attr("x", 0.95*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (2/7)*d3.select("#pointers").style("width").replace("px", ""));
+        d3.select("#marker4")
+        .attr("x", (3/7)*d3.select("#pointers").style("width").replace("px", ""));
+    d3.select("#marker5")
+        .attr("x", (4/7)*d3.select("#pointers").style("width").replace("px", ""));
+    d3.select("#marker6")
+        .attr("x", (5/7)*d3.select("#pointers").style("width").replace("px", ""));
+    d3.select("#marker7")
+        .attr("x", (6/7)*d3.select("#pointers").style("width").replace("px", ""));
+    d3.select("#marker8")
+        .attr("x", (0.98)*d3.select("#pointers").style("width").replace("px", ""));
 }
 
 window.addEventListener("load",svgResize());
@@ -221,7 +248,6 @@ slider.on("onchange", (value)=>{
 
 
 
-
 // class Particles{
 //     constructor(i){
 //         const geometry = new THREE.SphereGeometry( .05, 32, 16 );
@@ -243,17 +269,39 @@ slider.on("onchange", (value)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+// 
+// rotateWingX(angle){
+//     this.wing.rotation.x = angle;
+// }
+// rotateWingY(angle){
+//     this.wing.rotation.y = angle; 
+// }
+// rotateWingZ(angle){
+//     this.wing.rotation.z = angle;
+// }
+// posWingX(angle){
+//     this.wing.position.x = angle;
+// }
+// posWingY(angle){
+//     this.wing.position.y = angle; 
+// }
+// posWingZ(angle){
+//     this.wing.position.z = angle;
+// }
+// scaleWing(angle){
+//     this.wing.scale.x = angle;
+//     this.wing.scale.y = angle;
+//     this.wing.scale.z = angle;
+// }
+// scaleWingX(angle){
+//     this.wing.scale.x = angle;
+// }
+// scaleWingY(angle){
+//     this.wing.scale.y = angle; 
+// }
+// scaleWingZ(angle){
+//     this.wing.scale.z = angle;
+// }
 
 
 
@@ -309,35 +357,3 @@ slider.on("onchange", (value)=>{
 // });
 
 
-    // rotateWingX(angle){
-    //     this.wing.rotation.x = angle;
-    // }
-    // rotateWingY(angle){
-    //     this.wing.rotation.y = angle; 
-    // }
-    // rotateWingZ(angle){
-    //     this.wing.rotation.z = angle;
-    // }
-    // posWingX(angle){
-    //     this.wing.position.x = angle;
-    // }
-    // posWingY(angle){
-    //     this.wing.position.y = angle; 
-    // }
-    // posWingZ(angle){
-    //     this.wing.position.z = angle;
-    // }
-    // scaleWing(angle){
-    //     this.wing.scale.x = angle;
-    //     this.wing.scale.y = angle;
-    //     this.wing.scale.z = angle;
-    // }
-    // scaleWingX(angle){
-    //     this.wing.scale.x = angle;
-    // }
-    // scaleWingY(angle){
-    //     this.wing.scale.y = angle; 
-    // }
-    // scaleWingZ(angle){
-    //     this.wing.scale.z = angle;
-    // }

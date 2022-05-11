@@ -27,6 +27,9 @@ var widthScale = d3.scaleLinear()
 var heightScale = d3.scaleLinear()
                     .domain([0,5])
                     .range([canvasHeight,0]);
+let toH = d3.scaleLinear()
+                    .domain([1, 4])
+                    .range([3.5, 6.5]);
 //graphBackground
 canvas.append("g")
             .attr("transform","translate(0 , 0)")
@@ -52,6 +55,7 @@ var v1j = parseInt((xMax/2 - 0.5)/v1dj);
 var v2i = 3;
 var v2dj = (r1/r2)*v1dj;
 var v2j = parseInt((xMax - (xMax/2 + 0.5))/v2dj);
+
 //pipe section
 var x1 = (d) => {
     let sep = 0.5;
@@ -97,21 +101,65 @@ setEq();
 var pipeSectionColor = (d) => {
     return (d != 1 && d != 4)?"black":"red";
 }
+// steamLine and pipe boundary
+var dataLower = x.map( (d) => ({x: d, y: u(d, toH(h1) - r1, toH(h2) - r2)}));
+var dataUpper = x.map( (d) => ({x: d, y: u(d, toH(h1) + r1, toH(h2) + r2)}));
+var streamLineMid = x.map( (d) => ({x: d,
+                y: (u(d, toH(h1) - r1, toH(h2) - r2) + u(d, toH(h1) + r1, toH(h2) + r2))/2
+                }));
 var pipeSectionArray = [0,1,2,3,4,5];
-var pipeSection = canvas.append("g")
-        .selectAll(".pipeSection")
-        .data(pipeSectionArray)
-        .enter()
-            .append("line")
-            .attr("class", "pipeSection")
-            .attr("x1",(d) => (widthScale(x1(d)))).attr("x2",(d) => (widthScale(x2(d))))
-            .attr("y1",(d) => (heightScale(y1(d)))).attr("y2",(d) => (heightScale(y2(d))))
-            .attr("fill","none")
-            .attr("stroke","red")
-            .attr("stroke-width", 2);
+var pipeSectionData = createSection();
+
 var line = d3.line()
             .x( d => widthScale(d.x))
             .y( d => heightScale(d.y));
+
+var pipeSectionUpper = canvas.append("g")
+    .attr("transform", "translate("+canvasWidth/2+","+canvasHeight/2+")")
+    .selectAll(".pipeSectionPlot")
+    .data([dataUpper])
+    .enter()
+        .append("path")
+        .attr("class", "pipeSectionPlot")
+        .attr("d", line)
+        .attr("fill","none")
+        .attr("stroke","red")
+        .attr("stroke-width", 2);
+
+var pipeSectionLower = canvas.append("g")
+        .attr("transform", "translate("+canvasWidth/2+","+canvasHeight/2+")")
+        .selectAll(".pipeSectionPlot")
+        .data([dataLower])
+        .enter()
+            .append("path")
+            .attr("class", "pipeSectionPlot")
+            .attr("d", line)
+            .attr("fill","none")
+            .attr("stroke","red")
+            .attr("stroke-width", 2);
+
+var pipeSectionMid = canvas.append("g")
+        .attr("transform", "translate("+canvasWidth/2+","+canvasHeight/2+")")
+        .selectAll(".pipeSectionPlot")
+        .data([streamLineMid])
+        .enter()
+            .append("path")
+            .attr("class", "pipeSectionPlot")
+            .attr("d", line)
+            .attr("fill","none")
+            .attr("stroke","green")
+            .attr("stroke-width", 10);
+
+var pipeSection = canvas.append("g")
+        .attr("transform", "translate("+canvasWidth/2+","+canvasHeight/2+")")
+        .selectAll(".pipeSectionPlot")
+        .data([pipeSectionData])
+        .enter()
+            .append("path")
+            .attr("class", "pipeSectionPlot")
+            .attr("d", line)
+            .attr("fill","grey").style("opacity", "50%");
+
 //velocity
 function createVelocityArray(side){
     if (side=="left"){
@@ -161,18 +209,6 @@ canvas.append("g")
                 .attr("r", 2.5)
                 .attr("fill", "blue");
 //middle greyed out portion
-//pipe color
-let silverColor = "rgb(138,138,138)";
-let silverColorCenter = "rgb(237,237,237)";
-let pipeGradient = d3.select("#system").append("defs").append("linearGradient")
-            .attr("id", "pipeGradient")
-            .attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-pipeGradient.append("stop")
-        .attr("offset", "0%").style("stop-color", silverColor).style("stop-opacity", "1")
-pipeGradient.append("stop")
-        .attr("offset", "50%").style("stop-color", silverColorCenter).style("stop-opacity", "1");
-pipeGradient.append("stop")
-        .attr("offset", "100%").style("stop-color", silverColor).style("stop-opacity", "1");
 
 var greySectionArray = [
     {x: x1(0),y: y1(0)},
@@ -184,20 +220,11 @@ var greySectionArray = [
     {x: x1(4),y: y1(4)},
     {x: x1(3),y: y1(3)}
 ];
-var greySection = canvas.append("g")
-        .selectAll(".greySection")
-        .data([greySectionArray])
-        .enter()
-            .append("path")
-            .attr("class", "greySection")
-            .attr("d", line)
-            .attr("fill","grey").style("opacity", "50%");
 //slider input
 d3.select("#r2").on("input", () => {
     r2 = parseFloat(d3.select("#r2").property("value"));
     d3.select("#r2_input").html(r2);
     changePipe();
-    changeGreySection();
     changeVelocity();
     changeArea();
     setEq();
@@ -206,7 +233,6 @@ d3.select("#r1").on("input", () => {
     r1 = parseFloat(d3.select("#r1").property("value"));
     d3.select("#r1_input").html(r1);
     changePipe();
-    changeGreySection();
     changeVelocity();
     changeArea();
     setEq();
@@ -215,7 +241,6 @@ d3.select("#h1").on("input", () => {
     h1 = parseFloat(d3.select("#h1").property("value"));
     d3.select("#h1_input").html(h1);
     changePipe();
-    changeGreySection();
     changeVelocity();
     changeArea();
     setEq();
@@ -224,7 +249,6 @@ d3.select("#h2").on("input", () => {
     h2 = parseFloat(d3.select("#h2").property("value"));
     d3.select("#h2_input").html(h2);
     changePipe();
-    changeGreySection();
     changeVelocity();
     changeArea();
     setEq();
@@ -260,24 +284,30 @@ function setEq(){
 
 }
 //changePipe
+
 function changePipe(){
-    pipeSection.data(pipeSectionArray)
-        .attr("x1",(d) => (widthScale(x1(d)))).attr("x2",(d) => (widthScale(x2(d))))
-        .attr("y1",(d) => (heightScale(y1(d)))).attr("y2",(d) => (heightScale(y2(d))));
+    // steamLine and pipe boundary
+    dataLower = x.map( (d) => ({x: d, y: u(d, toH(h1) - r1, toH(h2) - r2)}));
+    dataUpper = x.map( (d) => ({x: d, y: u(d, toH(h1) + r1, toH(h2) + r2)}));
+    streamLineMid = x.map( (d) => ({x: d,
+        y: (u(d, toH(h1) - r1, toH(h2) - r2) + u(d, toH(h1) + r1, toH(h2) + r2))/2
+        }));
+    pipeSectionLower
+        .data([dataLower])
+            .attr("d", line);
+    pipeSectionUpper
+            .data([dataUpper])
+                .attr("d", line);
+    pipeSectionMid
+            .data([streamLineMid])
+                .attr("d", line);
+
+    pipeSectionData = createSection();
+    pipeSection
+            .data([pipeSectionData])
+                .attr("d", line);
 }
-function changeGreySection(){
-    greySectionArray = [
-        {x: x1(0),y: y1(0)},
-        {x: x1(1),y: y1(1)},
-        {x: x2(1),y: y2(1)},
-        {x: x2(2),y: y2(2)},
-        {x: x2(5),y: y2(5)},
-        {x: x2(4),y: y2(4)},
-        {x: x1(4),y: y1(4)},
-        {x: x1(3),y: y1(3)}
-    ];
-    greySection.data([greySectionArray]).attr("d", line);  
-}
+
 function changeVelocity(){
     v1j = parseInt((xMax/2 - 0.5)/v1dj);
     v2dj = (r1/r2)*v1dj;
@@ -307,13 +337,34 @@ function changeVelocity(){
                 .attr("cy", (d) => heightScale(d.y))
                 .attr("r", 2.5)
                 .attr("fill", "blue");
+    velocity1
+                .attr("y1", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
+                .attr("x2", 20 + 50*v1dj)
+                .attr("y2", heightScale(velocityArrayLeft[(v1i*v1j)/3].y));
+    //plot velocity------------------------------------------------>right
+    velocity2
+                .attr("y1", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
+                .attr("x2", canvasWidth - 20 + 50*v2dj)
+                .attr("y2", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y));
 }
 function changeArea(){
     A1.attr("cy", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
-            .attr("ry", widthScale(r1));
+            .attr("ry", widthScale(r1/1.3));
 
     A2.attr("cy", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
-            .attr("ry", widthScale(r2));
+            .attr("ry", widthScale(r2/1.3));
+
+    height1.attr("y2", heightScale(h1));
+    height2.attr("y2", heightScale(h2));
+
+    velocity1
+            .attr("y1", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
+            .attr("x2", 20 + 50*v1dj)
+            .attr("y2", heightScale(velocityArrayLeft[(v1i*v1j)/3].y));
+    velocity2
+            .attr("y1", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
+            .attr("x2", canvasWidth - 20 + 50*v2dj)
+            .attr("y2", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y));
 }
 //plot cross-section------------------------------------------------>left
 var A1 = canvas.append("g")
@@ -322,7 +373,7 @@ var A1 = canvas.append("g")
             .attr("cx", 20)
             .attr("cy", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
             .attr("rx", 20)
-            .attr("ry", widthScale(r1))
+            .attr("ry", widthScale(r1/1.3))
             .attr("fill","none")
             .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
             .attr("fill", "grey");
@@ -333,7 +384,47 @@ var A2 = canvas.append("g")
             .attr("cx", canvasWidth - 20)
             .attr("cy", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
             .attr("rx", 20)
-            .attr("ry", widthScale(r2))
+            .attr("ry", widthScale(r2/1.3))
             .attr("fill","none")
             .attr("stroke", "black").attr("stroke-width",1).attr("stroke-dasharray",3)
             .attr("fill", "grey");
+//plot height------------------------------------------------>left
+var height1 = canvas.append("g")
+            .append("line")
+            .attr("class", ".dataPointer")
+            .attr("x1", 20)
+            .attr("x2", 20)
+            .attr("y1", canvasHeight)
+            .attr("y2", heightScale(h1))
+            .attr("fill","none")
+            .attr("stroke", "black").attr("stroke-width",5).attr("stroke-dasharray",3);
+//plot height------------------------------------------------>right
+var height2 = canvas.append("g")
+                .append("line")
+                .attr("class", ".dataPointer")
+                .attr("x1", canvasWidth - 20)
+                .attr("x2", canvasWidth - 20)
+                .attr("y1", canvasHeight)
+                .attr("y2", heightScale(h2))
+                .attr("fill","none")
+                .attr("stroke", "black").attr("stroke-width",5).attr("stroke-dasharray",3);
+//plot velocity------------------------------------------------>left
+var velocity1 = canvas.append("g")
+            .append("line")
+            .attr("class", ".dataPointer")
+            .attr("x1", 20)
+            .attr("y1", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
+            .attr("x2", 20 + 50*v1dj)
+            .attr("y2", heightScale(velocityArrayLeft[(v1i*v1j)/3].y))
+            .attr("fill","none")
+            .attr("stroke", "black").attr("stroke-width",5).attr("marker-end","url(#arrow)");
+//plot velocity------------------------------------------------>right
+var velocity2 = canvas.append("g")
+            .append("line")
+            .attr("class", ".dataPointer")
+            .attr("x1", canvasWidth - 20)
+            .attr("y1", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
+            .attr("x2", canvasWidth - 20 + 50*v2dj)
+            .attr("y2", heightScale(velocityArrayRight[2*(v2i*v2j)/3 - 1].y))
+            .attr("fill","none")
+            .attr("stroke", "black").attr("stroke-width",5).attr("marker-end","url(#arrow)");

@@ -66,6 +66,11 @@
                     <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
                     <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
                     <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
+                    <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
+                    <use xlink:href="#marker" id="marker5" fill="#a6a5a2"  y="0"/>
+                    <use xlink:href="#marker" id="marker6" fill="#a6a5a2"  y="0"/>
+                    <use xlink:href="#marker" id="marker7" fill="#a6a5a2"  y="0"/>
+                    <use xlink:href="#marker" id="marker8" fill="#a6a5a2"  y="0"/>
                 </svg>
 
                 <!-- Explantion(close) -->
@@ -91,6 +96,43 @@
             <!-- Aeroplane -->
             <!-- Wing -->
             <!-- Velocity field -->
+            <div class="svgStuff">
+                <div class="grid-container">
+                    <!-- Switch to add foil -->
+                    <div class="item1">
+                        <div class="switchContainer">
+                            <div class="instruct">Remove obstactle
+                                <label class="switch">
+                                    <input id="switch" type="checkbox" autocomplete="off">
+                                    <span class="slider2 round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item2">
+                        <!-- river -->
+                        <div id="flowingfluid">
+                            <!-- <img id="river" src="images/reality/plane.gif"> -->
+                        </div>
+                        <!-- Svg -->
+                        <svg id="system">
+                            <defs>
+                                <marker
+                                  id="arrow"
+                                  markerUnits="strokeWidth"
+                                  markerWidth="12"
+                                  markerHeight="12"
+                                  viewBox="0 0 12 12"
+                                  refX="6"
+                                  refY="6"
+                                  orient="auto">
+                                  <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #f00;"></path>
+                                </marker>
+                              </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row" id="idealize">
@@ -105,6 +147,11 @@
 </div>
 
 </body>
+<script src="javascript\idealizationJS\idealizationYY\variableDeclaration.js"></script>
+<script src="javascript\idealizationJS\idealizationYY\functionDefs.js"></script>
+<script src="javascript\idealizationJS\idealizationYY\idealization.js"></script>
+<script src="javascript\idealizationJS\idealizationYY\d3Variables.js"></script>
+
 <script src="javascript\three.min.js"></script>
 <script src="javascript\GLTFLoader.js"></script>
 <script src="javascript\gsap.min.js"></script>
@@ -113,34 +160,23 @@
 </html>
 
 
+<!-- <input class="sliderX" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
+<span id="sliderX">0</span>
+<input class="sliderY" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
+<span id="sliderY">0</span>
+<input class="sliderZ" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
+<span id="sliderZ">0</span>
 
+<input class="sliderMX" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
+<span id="sliderMX">0</span>
+<input class="sliderMY" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
+<span id="sliderMY">0</span>
+<input class="sliderMZ" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
+<span id="sliderMZ">0</span> 
 
-
-
-
-
-
-
-
-
-
-                <!-- <input class="sliderX" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
-                <span id="sliderX">0</span>
-                <input class="sliderY" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
-                <span id="sliderY">0</span>
-                <input class="sliderZ" type="range" min="0" max="360" value="0" autocomplete="off" step="0.1">
-                <span id="sliderZ">0</span>
-
-                <input class="sliderMX" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
-                <span id="sliderMX">0</span>
-                <input class="sliderMY" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
-                <span id="sliderMY">0</span>
-                <input class="sliderMZ" type="range" min="-10" max="10" value="0" autocomplete="off" step="0.1">
-                <span id="sliderMZ">0</span> 
-
-                <input class="sliderSX" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
-                <span id="sliderSX">0</span>
-                <input class="sliderSY" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
-                <span id="sliderSY">0</span>
-                <input class="sliderSZ" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
-                <span id="sliderSZ">0</span>        -->
+<input class="sliderSX" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
+<span id="sliderSX">0</span>
+<input class="sliderSY" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
+<span id="sliderSY">0</span>
+<input class="sliderSZ" type="range" min="0" max="50" value="0" autocomplete="off" step="0.1">
+<span id="sliderSZ">0</span>     -->

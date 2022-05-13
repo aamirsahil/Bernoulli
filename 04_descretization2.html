@@ -53,15 +53,21 @@
         <!-- Left -->
         <div id="leftMain" class="col-md-5">
 <!--            Explanation  -->
-            <h1>Kinetic energy</h1>
+            <h2><b>Calculating the change in kinetic energy</b></h2>
             <div id="steps">
-                The position of the fluid element at \(t\) is <br><span style="font-size: 30px;">&#9312;</span>
-                 + <span style="font-size: 30px;">&#9313;</span><br>
-                The position of the fluid element at \(t + dt\) is <span style="font-size: 30px;">&#9313;</span>
-                 + <span style="font-size: 30px;">&#9314;</span><br>
-                Initial \(KE\) of the fluid element<br> \(=\) <span class="ke1">\(KE_1\)</span> \(+ KE_2\)<br>
-                Final \(KE\) of the fluid element<br> \(= KE_2 +\) <span class="ke3">\(KE_3\)</span><br>
-                \( \Delta KE = \) <span class="ke3">\(KE_3\)</span> \(-\) <span class="ke1">\(KE_1\)</span>
+                <ul>
+                    <li class="mainList">The position of the fluid element:</li>
+                    <ul>
+                        <li class="subList">At \(t\) is <span style="font-size: 30px;">&#9312;</span> + <span style="font-size: 30px;">&#9313;</span></li>
+                        <li class="subList">At \(t + dt\) is <span style="font-size: 30px;">&#9313;</span> + <span style="font-size: 30px;">&#9314;</span></li>
+                    </ul>
+                    <li class="mainList">Implies initial \(KE\) \(= KE_1 + KE_*\)</li>
+                    <li class="mainList">Final \(KE = KE_* + KE_2\)</span></li>
+                </ul>
+                $$ \Delta KE = KE_2 - KE_1 = \frac{1}{2}m_2v_2^2 - \frac{1}{2}m_1v_1^2 $$
+                <div class="m1m2">
+                    where, \(m_1 = \rho A_1ds_1 \text{ and } m_2 = \rho A_2ds_2\)
+                </div>
             </div>
 <!-- Explanation(close) -->
         </div>

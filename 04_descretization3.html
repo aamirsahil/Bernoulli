@@ -53,15 +53,21 @@
         <!-- Left -->
         <div id="leftMain" class="col-md-5">
 <!--            Explanation  -->
-            <h1>Potential energy</h1>
-            <div id="steps">
-                The position of the fluid element at \(t\) is <br><span style="font-size: 30px;">&#9312;</span>
-                 + <span style="font-size: 30px;">&#9313;</span><br>
-                The position of the fluid element at \(t + dt\) is <span style="font-size: 30px;">&#9313;</span>
-                 + <span style="font-size: 30px;">&#9314;</span><br>
-                Initial \(PE\) of the fluid element<br> \(=\) <span class="pe1">\(PE_1\)</span> \(+ PE_2\)<br>
-                Final \(PE\) of the fluid element<br> \(= PE_2 +\) <span class="pe3">\(PE_3\)</span><br>
-                \( \Delta PE = \) <span class="pe3">\(PE_3\)</span> \(-\) <span class="pe1">\(PE_1\)</span>
+            <h2><b>Calculating the change in potential energy</b></h2>
+            <div id="stepsP">
+                <ul>
+                    <li class="mainList">The position of the fluid element:</li>
+                    <ul>
+                        <li class="subList">At \(t\) is <span style="font-size: 30px;">&#9312;</span> + <span style="font-size: 30px;">&#9313;</span></li>
+                        <li class="subList">At \(t + dt\) is <span style="font-size: 30px;">&#9313;</span> + <span style="font-size: 30px;">&#9314;</span></li>
+                    </ul>
+                    <li class="mainList">Implies initial \(PE\) \(= PE_1 + PE_*\)</li>
+                    <li class="mainList">Final \(PE = PE_* + PE_2\)</span></li>
+                </ul>
+                $$ \Delta PE = PE_2 - PE_1 = m_2gh_2 - m_1gh_1 $$
+                <div class="m1m2">
+                    where, \(m_1 = \rho A_1ds_1 \text{ and } m_2 = \rho A_2ds_2\)
+                </div>
             </div>
 <!-- Explanation(close) -->
         </div>

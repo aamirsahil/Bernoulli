@@ -99,9 +99,14 @@ table, th, td {
     width: 90%
   }
 #steps{
-    text-align: center;
+    /* text-align: center; */
     padding: auto;
-    font-size: 4.3vh;
+    font-size: 4.0vh;
+}
+#stepsP{
+    /* text-align: center; */
+    padding: auto;
+    font-size: 3.55vh;
 }
 #steps_force1{
     text-align: center;
@@ -125,11 +130,17 @@ table, th, td {
     cursor: pointer;
 }
 #forceder{
-    font-size: 3.6vh;
+    font-size: 3.4vh;
 }
 .mainList{
     margin: 3.2vh 0 0 0;
 }
 .subList{
     margin: 0 5px 5px 0;
+}
+.dW{
+    padding-top: 5px;
+}
+.m1m2{
+    text-align: end;
 }

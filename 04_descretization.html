@@ -53,23 +53,29 @@
         <!-- Left -->
         <div id="leftMain" class="col-md-5">
 <!--            Explanation  -->
-            <h1>Work done</h1>
-            <ul>
-                <li>We focus our analysis on an element of fluid.</li>
-            </ul>
-            <div id="steps_force1">
+            <h1>Calculating the work done</h1>
+            <ul id="forceder">
+                <li class="mainList">We place the fluid element in a coordinate system.</li>
+            <!-- <div id="steps_force1">
                 The position of the fluid element at \(t\) is <span style="font-size: 30px;">&#9312;</span><br>
                 The position of the fluid element at \(t + dt\) is <span style="font-size: 30px;">&#9313;</span><br>
-            </div>
-            <ul>
-                <li>Force is exerted on the fluid element by the pressure of the surrounding fluid</li>
+            </div> -->
+                <li class="mainList">Forces are exerted on the system by the surrounding fluid</li>
+                <ul>
+                    <li class="subList">Force along the motion, \( F_1 = P_1 A_1 \)</li>
+                    <li class="subList">Force against the motion, \( F_2 = P_2 A_2 \) </li>
+                </ul>
+                <li class="mainList">Since \(F_1 > F_2 \), the fluid element moves.</li>
+                <ul>
+                    <li class="subList">Work done on the system, \( W_1 = P_1 A_1 ds_1 \)</li>
+                    <li class="subList">Work done by the system,\( W_2 = P_2 A_2 ds_2 \)
+                    </li>
+                </ul>
             </ul>
-            <div id="steps_force2">
-                Force along the motion \( = P_1 A_1 \implies \)  
-                $$ \text{work done on the fluid element} = P_1 A_1 ds_1 $$<br>
-                Force against the motion \( = P_2 A_2 \implies \) 
-                $$ \text{work done by the fluid element} = P_2 A_2 ds_2 $$<br>
-            </div>
+            <!-- <div id="steps_force2">
+                $$  $$<br>
+                $$  $$<br>
+            </div> -->
 <!-- Explanation(close) -->
         </div>
         <!-- Left(close) -->

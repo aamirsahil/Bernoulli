@@ -54,35 +54,36 @@
             <h1>Idealization</h1>
             <ul>
                 <li>Here we strip away details we consider unnecessary to solving the problem at hand.</li>
-                <li id="point1">Let us first draw the schematic of the aeroplane wings.</li>
-                <li id="point2">We consider the wings because this is the part of the plane that plays the major role in its aerodynamics.</li>
+                <li>And focus on relevant abstractions.</li>
             </ul>
-            <div class="instru">
-                <p>Drag the slider to view the process of idealization</p>
-                <svg width="100%" height="25px" id="pointers">
-                    <defs>
-                        <path id="marker" stroke-linecap="round" d="M 0 0 H 30 L 15 25"/>
-                    </defs>
-                    <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
-                    <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker5" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker6" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker7" fill="#a6a5a2"  y="0"/>
-                    <use xlink:href="#marker" id="marker8" fill="#a6a5a2"  y="0"/>
-                </svg>
-
-                <!-- Explantion(close) -->
-        
                 <!-- Slider -->
-        
-                    <div class="slidecontainer">
-                        <input class="slider" type="range" min="0" max="100" value="0" autocomplete="off">
-                    </div>
-        
-                <!-- Slider(close) -->
-            </div>
+                <div class="instru">
+                    <p>Drag the slider to view the process of idealization</p>
+                    <svg width="100%" height="25px" id="pointers">
+                        <defs>
+                            <path id="marker" stroke-linecap="round" d="M 0 0 H 30 L 15 25"/>
+                        </defs>
+                        <use xlink:href="#marker" id="marker1" fill="#5999e3"  y="0"/>
+                        <use xlink:href="#marker" id="marker2" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker3" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker4" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker5" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker6" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker7" fill="#a6a5a2"  y="0"/>
+                        <use xlink:href="#marker" id="marker8" fill="#a6a5a2"  y="0"/>
+                    </svg>
+    
+                    <!-- Explantion(close) -->
+            
+                </div>
+                <div class="slidecontainer">
+                    <input class="slider" type="range" min="0" max="100" value="0" autocomplete="off">
+                </div>
+            <ul>
+            <!-- Slider(close) -->
+                <li id="point1">We consider the wings because it is the part that plays the major role in the aerodynamics of the plane.</li>
+                <li id="point2">Flowing fluid is represented as a vector field.</li>
+            </ul>
         </div>
 
     <!--        Left Hand Column(close)  -->
@@ -97,18 +98,16 @@
             <!-- Wing -->
             <!-- Velocity field -->
             <div class="svgStuff">
+                <div class="switchContainer">
+                    <div class="instruct">Remove obstactle
+                        <label class="switch">
+                            <input id="switch" type="checkbox" autocomplete="off">
+                            <span class="slider2 round"></span>
+                        </label>
+                    </div>
+                </div>
                 <div class="grid-container">
                     <!-- Switch to add foil -->
-                    <div class="item1">
-                        <div class="switchContainer">
-                            <div class="instruct">Remove obstactle
-                                <label class="switch">
-                                    <input id="switch" type="checkbox" autocomplete="off">
-                                    <span class="slider2 round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                     <div class="item2">
                         <!-- river -->
                         <div id="flowingfluid">

@@ -55,20 +55,20 @@ canvas.append("g")
             .style("fill","rgb(73, 7, 134)")
             .style("font-size","2.5vh");
 //adding text------------->position
-canvas.append("text")
-        .attr("text-anchor", "end")
-        .attr("x", canvasWidth/2 - graphOffeset/2)
-        .attr("y", (canvasHeight/2+graphYOffset) + 30)
-        .text("Position");
+// canvas.append("text")
+//         .attr("text-anchor", "end")
+//         .attr("x", canvasWidth/2 - graphOffeset/2)
+//         .attr("y", (canvasHeight/2+graphYOffset) + 30)
+//         .text("Position");
 //adding text------------->Force 1
 canvas.append("text")
         .attr("text-anchor", "end")
-        .attr("x", canvasWidth/5)
+        .attr("x", canvasWidth/7)
         .attr("y", (canvasHeight/6+graphYOffset) + 30)//\u03c1
         .append("tspan")
         .attr("font-size", "20px").text("m").append("tspan").attr("font-size", "15px").text("1")
-        .append("tspan").attr("font-size", "20px").text(" = \u03c1gA").append("tspan").attr("font-size", "15px").text("1")
-        .append("tspan").attr("font-size", "20px").text("ds").append("tspan").attr("font-size", "15px").text("1");
+        // .append("tspan").attr("font-size", "20px").text(" = \u03c1gA").append("tspan").attr("font-size", "15px").text("1")
+        // .append("tspan").attr("font-size", "20px").text("ds").append("tspan").attr("font-size", "15px").text("1");
 //adding text------------->Force 2
 canvas.append("text")
         .attr("text-anchor", "end")
@@ -76,8 +76,8 @@ canvas.append("text")
         .attr("y", (graphYOffset) - 10)
         .append("tspan")
         .attr("font-size", "20px").text("m").append("tspan").attr("font-size", "15px").text("2")
-        .append("tspan").attr("font-size", "20px").text(" = \u03c1gA").append("tspan").attr("font-size", "15px").text("2")
-        .append("tspan").attr("font-size", "20px").text("ds").append("tspan").attr("font-size", "15px").text("2");
+        // .append("tspan").attr("font-size", "20px").text(" = \u03c1gA").append("tspan").attr("font-size", "15px").text("2")
+        // .append("tspan").attr("font-size", "20px").text("ds").append("tspan").attr("font-size", "15px").text("2");
 
 //adding slider
 canvas.append("g").attr("class","moveSlider")

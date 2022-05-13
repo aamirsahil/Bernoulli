@@ -48,7 +48,7 @@ var slider = d3
     .min(sliderStartPos)
     .max(sliderEndPos)
     .width(widthScale(totalLen + startPos) - graphOffeset)
-    .ticks(5)
+    .ticks(0)
     .default(0);
 //velocity state
 var velocityState = velocityPath();

@@ -55,54 +55,54 @@ canvas.append("g")
             .style("fill","rgb(73, 7, 134)")
             .style("font-size","2.5vh");
 //adding text------------->position
-canvas.append("text")
-        .attr("text-anchor", "end")
-        .attr("x", canvasWidth/2 - graphOffeset/2)
-        .attr("y", (canvasHeight/2+graphYOffset) + 30)
-        .text("Position");
+// canvas.append("text")
+//         .attr("text-anchor", "end")
+//         .attr("x", canvasWidth/2 - graphOffeset/2)
+//         .attr("y", (canvasHeight/2+graphYOffset) + 30)
+//         .text("Position");
 //adding text------------->Force 1
 canvas.append("text")
         .attr("text-anchor", "end")
         .attr("x", canvasWidth/6 - graphOffeset/2)
         .attr("y", (canvasHeight/6+graphYOffset) + 30)
         .append("tspan")
-        .attr("font-size", "20px").text("F").append("tspan").attr("font-size", "15px").text("1")
-        .append("tspan").attr("font-size", "20px").text(" = P").append("tspan").attr("font-size", "15px").text("1")
-        .append("tspan").attr("font-size", "20px").text(" A").append("tspan").attr("font-size", "15px").text("1");
+        .attr("font-size", "20px").text("F").append("tspan").attr("font-size", "15px").text("1");
+        // .append("tspan").attr("font-size", "20px").text(" = P").append("tspan").attr("font-size", "15px").text("1")
+        // .append("tspan").attr("font-size", "20px").text(" A").append("tspan").attr("font-size", "15px").text("1");
 //adding text------------->Force 2
 canvas.append("text")
         .attr("text-anchor", "end")
         .attr("x", canvasWidth - graphOffeset/2)
         .attr("y", (graphYOffset) - 10)
         .append("tspan")
-        .attr("font-size", "20px").text("F").append("tspan").attr("font-size", "15px").text("2")
-        .append("tspan").attr("font-size", "20px").text(" = P").append("tspan").attr("font-size", "15px").text("2")
-        .append("tspan").attr("font-size", "20px").text(" A").append("tspan").attr("font-size", "15px").text("2");
+        .attr("font-size", "20px").text("F").append("tspan").attr("font-size", "15px").text("2");
+        // .append("tspan").attr("font-size", "20px").text(" = P").append("tspan").attr("font-size", "15px").text("2")
+        // .append("tspan").attr("font-size", "20px").text(" A").append("tspan").attr("font-size", "15px").text("2");
 //add initial and final indicators-------------------------->number in circle
 // circle------------------------------------------------------->left
-canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + heightScale(-1) + ")")
-            .append("circle")
-            .attr("cx", 0).attr("cy", -25)
-            .attr("r", 15).attr("stroke", "black").attr("fill", "none");
+// canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + heightScale(-1) + ")")
+//             .append("circle")
+//             .attr("cx", 0).attr("cy", -25)
+//             .attr("r", 15).attr("stroke", "black").attr("fill", "none");
 // circle------------------------------------------------------>right
-canvas.append("g").attr("transform", "translate(" + (graphXOffset + widthScale(1.43)) + "," + heightScale(-1) + ")")
-            .append("circle")
-            .attr("cx", 0).attr("cy", -25)
-            .attr("r", 15).attr("stroke", "black").attr("fill", "none");
+// canvas.append("g").attr("transform", "translate(" + (graphXOffset + widthScale(1.43)) + "," + heightScale(-1) + ")")
+//             .append("circle")
+//             .attr("cx", 0).attr("cy", -25)
+//             .attr("r", 15).attr("stroke", "black").attr("fill", "none");
 // numer 1 --------------------------------------------------->left
-canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + heightScale(-1) + ")")
-            .append("text")
-            .attr("text-anchor", "end")
-            .attr("x", 3)
-            .attr("y", -20)
-            .text("1")
+// canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + heightScale(-1) + ")")
+//             .append("text")
+//             .attr("text-anchor", "end")
+//             .attr("x", 3)
+//             .attr("y", -20)
+//             .text("1")
 // numer 2 --------------------------------------------------->right
-canvas.append("g").attr("transform", "translate(" + (graphXOffset + widthScale(1.43)) + "," + heightScale(-1) + ")")
-            .append("text")
-            .attr("text-anchor", "end")
-            .attr("x", 3)
-            .attr("y", -20)
-            .text("2");
+// canvas.append("g").attr("transform", "translate(" + (graphXOffset + widthScale(1.43)) + "," + heightScale(-1) + ")")
+//             .append("text")
+//             .attr("text-anchor", "end")
+//             .attr("x", 3)
+//             .attr("y", -20)
+//             .text("2");
 //adding slider
 canvas.append("g").attr("class","moveSlider")
     .attr("transform", "translate(" + graphXOffset + "," + heightScale(-1) + ")")

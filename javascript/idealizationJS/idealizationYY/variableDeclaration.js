@@ -1,6 +1,6 @@
 // canvas dimension
 var canvasWidth = document.getElementById('rightMain').offsetWidth - 100;
-var canvasHeight = document.getElementById('rightMain').offsetHeight - 70;
+var canvasHeight = document.getElementById('rightMain').offsetHeight - 20;
 //define the entire canvas(right side)
 var canvas = d3.select("#system")
         .attr("width",canvasWidth)

@@ -1,4 +1,4 @@
-var desc = ["Reality", "Idealization", "Discretization", "Geometric", "Mathematical"];
+var desc = ["Reality", "Idealization", "Discretization", "Geometric", "Algebraic"];
 for(let i = 1; i < 6; i++)
 {
     let text = document.getElementById("text" + i.toString());

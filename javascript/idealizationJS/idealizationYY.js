@@ -6,7 +6,7 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( Canvas_Width, Canvas_Height );
 document.getElementById("rightMain").appendChild( renderer.domElement );
-renderer.setClearColor( 0x9dc1fa, 1 );
+renderer.setClearColor( 0xabdcff, 1 );
 
 // const light = new THREE.AmbientLight( 0xe0e0e0 ); // soft white light
 // scene.add( light );
@@ -32,7 +32,7 @@ class Plane{
             this.wing.visible = false;
         });
         let geometry = new THREE.PlaneGeometry( Canvas_Width, Canvas_Height );;
-        let material = new THREE.MeshBasicMaterial( { color: 0x9dc1fa } );
+        let material = new THREE.MeshBasicMaterial( { color: 0xabdcff } );
         this.screen = new THREE.Mesh( geometry, material );
         this.screen.position.z = 1;
         this.screen.material.transparent = true;

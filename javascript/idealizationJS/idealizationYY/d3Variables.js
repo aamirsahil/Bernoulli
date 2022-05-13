@@ -1,12 +1,12 @@
 // text fluid flow
-canvas.append("g")
-        .append("text")
-        .style("font-size", "2rem")
-        .attr("x", 0)
-        .attr("y", 15)
-        .attr("dy", ".35em")
-        .text( "Flowing fluid")
-        .style("fill", "#035704");
+// canvas.append("g")
+//         .append("text")
+//         .style("font-size", "2rem")
+//         .attr("x", 0)
+//         .attr("y", 15)
+//         .attr("dy", ".35em")
+//         .text( "Flowing fluid")
+//         .style("fill", "#035704");
 // plot the circles that represent the points
 var plotFluidPointsObs = canvas.append("g")
         .selectAll(".plotPointObs")

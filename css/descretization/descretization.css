@@ -16,9 +16,7 @@
     z-index: 20; 
     width: 40%;
 }
-li{
-    margin: 0 0 1px 0;
-}
+
 .instruct{
     color: rgb(73, 7, 134);
     text-align: center;
@@ -125,4 +123,13 @@ table, th, td {
 }
 .ke1:hover,.ke3:hover,.pe1:hover,.pe3:hover{
     cursor: pointer;
+}
+#forceder{
+    font-size: 3.6vh;
+}
+.mainList{
+    margin: 3.2vh 0 0 0;
+}
+.subList{
+    margin: 0 5px 5px 0;
 }

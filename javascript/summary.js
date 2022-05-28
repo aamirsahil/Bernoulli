@@ -10,11 +10,11 @@ d3.select('#slider1').on("input",function(){
 });
 var textSliderRange = [0,1/14,8/14,10/14,12/14,1]
 var text = [
-    "We started with an real life example which we needed to model to understand airplane lift.",
-    "Only the essential elements are kept and we idealized the system to study its relation.",
-    "The system is then divided into smaller elements such that the governing physics is same in each division.",
-    "The entire system is then placed in a geometric grid and we define necessary metrics to describe the system.",
-    "Through analytical or numerical manipulation we obtain the relationship between the physical quantities under investigation."
+    "We started with a real life example.",
+    "We then idealized the system.",
+    "Focused our analysis on a fluid element.",
+    "Placed the system in a geometric grid and calculated the net work done, change in kinetic and potential energy.",
+    "Fed the details into equation of conservation of energy to obtain the Bernoulli's equation."
     ]
 function setText(length)
 {

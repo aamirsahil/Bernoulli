@@ -77,8 +77,8 @@ var link = [
     // "/05_geometric2.html",
     // "/06_mathematical.html",
     "/06_mathematical2.html",
-    // "/06_mathematical4.html",
     "/06_mathematical3.html",
+    // "/06_mathematical4.html",
     "/07_summary.html"
 ];
 var loc = window.location.pathname.replace("/Bernoulli", "");

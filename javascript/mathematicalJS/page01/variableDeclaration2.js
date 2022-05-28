@@ -2,6 +2,7 @@
 var x = [...Array(totalNum).keys()].map( d => (d*dist) + startPos);
 var dataLower = x.map( (d) => ({x: d, y: u(d,-0.3,5,1)}));
 var dataUpper = x.map( (d) => ({x: d, y: u(d,+0.3,8,0.6)}));
+var dataMid = x.map( (d) => ({x: d, y: (u(d,+0.3,8,0.6) + u(d,-0.3,5,1))/2 }));
 //keep track of left most point of section
 var index = bisect(x,sliderStartPos);
 //create a section of pipe within x and x+t

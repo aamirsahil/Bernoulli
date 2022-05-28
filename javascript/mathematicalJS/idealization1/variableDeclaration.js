@@ -54,7 +54,7 @@ let frameSpeed = 1;
 let animateOn = true;
 // right slider range
 // right slider range
-var sliderRange = [0, 1/7, 2/7, 3/7, 4/7, 5/7, 6/7, 1];
+var sliderRange = [0, 1/5, 2/5, 3/5, 4/5, 1];
 let blueSel = "#5999e3";
 let greyUnCel = "#a6a5a2";
 // foil

@@ -114,9 +114,9 @@ canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYO
 canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYOffset + ")").attr("class", "circNnum")
             .append("text")
             .attr("text-anchor", "end")
-            .attr("x", 3 + widthScale(dataVel.slice(0,totalNum)[index + 100].x))
-            .attr("y", 5 + heightScale(dataVel.slice(0,totalNum)[index + 100].y))
-            .text("2");
+            .attr("x", 7 + widthScale(dataVel.slice(0,totalNum)[index + 100].x))
+            .attr("y", 17 + heightScale(dataVel.slice(0,totalNum)[index + 100].y))
+            .text("*").attr('font-size', '35px');
 // numer 3 --------------------------------------------------->right
 canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYOffset + ")").attr("class", "circNnum")
             .append("text")

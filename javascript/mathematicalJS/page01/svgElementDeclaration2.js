@@ -11,6 +11,18 @@ var plotLower = canvas.append("g")
                 .attr("fill","none")
                 .attr("stroke", "red")
                 .attr("stroke-width", 2);
+canvas.append("g")
+        .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")
+        .selectAll(".plot")
+        .data([dataMid])
+        .enter()
+                .append("path")
+                .attr("class", "plot")
+                .attr("d",line)
+                .attr("fill","none")
+                .attr("stroke", "red")
+                .style("animation", "blink 4s infinite")
+                .attr("stroke-width", 10);
 // upper
 var plotUpper = canvas.append("g")
             .attr("transform","translate(" + graphXOffset + "," + graphYOffset + ")")

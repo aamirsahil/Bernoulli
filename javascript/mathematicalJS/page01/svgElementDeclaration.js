@@ -54,6 +54,16 @@ canvas.append("g")
             .text("Drag this slider see how the fluid element is pushed!")
             .style("fill","rgb(73, 7, 134)")
             .style("font-size","2.5vh");
+// popup thing
+canvas.append("g")
+            .attr("transform", "translate(" + (graphXOffset - 30) + "," + (heightScale(-1.3)) + ")")
+            .append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .text("Strictly, the Bernoulli's equation is applicable for points on the same streamline")
+            .style("fill","red")
+            .style("animation", "blink 4s infinite")
+            .style("font-size","2.5vh");
 //adding text------------->position
 // canvas.append("text")
 //         .attr("text-anchor", "end")

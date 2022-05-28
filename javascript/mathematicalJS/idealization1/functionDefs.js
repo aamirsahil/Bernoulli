@@ -27,31 +27,21 @@ d3.select("#myRange").on("input", () => {
         setMarker(1);
         setPic(2);
     }
-    else if(length > sliderRange[3] && length < sliderRange[4]){
+    else if(length > sliderRange[3] && length <= sliderRange[4]){
             setText(3);
             setMarker(2);
             setPic(3);
 
     }
-    else if(length > sliderRange[4] && length <= sliderRange[5]){
+    else if(length > sliderRange[4] && length < sliderRange[5]){
         setText(4);
         setMarker(3);
         setPic(4);
     }
-    else if(length > sliderRange[5] && length <= sliderRange[6]){
+    else{
         setText(5);
         setMarker(4);
         setPic(5);
-    }
-    else if(length > sliderRange[6] && length < sliderRange[7]){
-            setText(6);
-            setMarker(5);
-            setPic(6);
-    }
-    else{
-        setText(7);
-        setMarker(6);
-        setPic(7);
 
         hideAll();
     }
@@ -60,14 +50,14 @@ function setPic(){
 
 }
 function setMarker(i){
-    let markerState = [...Array(8).keys()].map((d) => (d<=i)?blueSel:greyUnCel);
-    for(let i=0;i<7;i++)
+    let markerState = [...Array(5).keys()].map((d) => (d<=i)?blueSel:greyUnCel);
+    for(let i=0;i<4;i++)
             d3.select("#marker"+(i+2)).style("fill", markerState[i]);
 }
 
 function setText(i){
-    let textState = [...Array(8).keys()].map((d) => (d<=i)?"visible":"hidden");
-    for(let j=0;j<8;j++)
+    let textState = [...Array(6).keys()].map((d) => (d<=i)?"visible":"hidden");
+    for(let j=0;j<6;j++)
             d3.select("#point0"+(j)).style("visibility", textState[j]);
 }
 
@@ -209,19 +199,15 @@ function svgResize()
     d3.select("#marker1")
         .attr("x", 0);
     d3.select("#marker2")
-        .attr("x", (1/7)*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (1/5)*d3.select("#pointers").style("width").replace("px", ""));
     d3.select("#marker3")
-        .attr("x", (2/7)*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (2/5)*d3.select("#pointers").style("width").replace("px", ""));
         d3.select("#marker4")
-        .attr("x", (3/7)*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (3/5)*d3.select("#pointers").style("width").replace("px", ""));
     d3.select("#marker5")
-        .attr("x", (4/7)*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (4/5)*d3.select("#pointers").style("width").replace("px", ""));
         d3.select("#marker6")
-        .attr("x", (5/7)*d3.select("#pointers").style("width").replace("px", ""));
-        d3.select("#marker7")
-        .attr("x", (6/7)*d3.select("#pointers").style("width").replace("px", ""));
-    d3.select("#marker8")
-        .attr("x", 0.95*d3.select("#pointers").style("width").replace("px", ""));
+        .attr("x", (0.98)*d3.select("#pointers").style("width").replace("px", ""));
 }
 window.addEventListener("load",svgResize());
 // window.addEventListener("resize",svgResize());

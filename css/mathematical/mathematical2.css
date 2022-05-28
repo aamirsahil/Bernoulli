@@ -1,5 +1,5 @@
 #leftMain{
-    font-size: 2.3vh;
+    font-size: 2.45vh;
     padding: 20px;
   }
 #rightMain{
@@ -69,4 +69,9 @@
 @keyframes forceMoveRight {
   from {transform: translateX(0px);}
   to {transform: translateX(-10px);}
+}
+@keyframes blink {
+  0% {opacity: 100%;}
+  50% {opacity: 25%;}
+  100% {opacity: 100%;}
 }

@@ -110,20 +110,20 @@ canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYO
             .attr("x", 3 + widthScale(dataVel.slice(0,totalNum)[index + 9].x))
             .attr("y", 5 + heightScale(dataVel.slice(0,totalNum)[index].y))
             .text("1")
-// numer 2 --------------------------------------------------->right
+// numer * --------------------------------------------------->right
 canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYOffset + ")").attr("class", "circNnum")
             .append("text")
             .attr("text-anchor", "end")
             .attr("x", 7 + widthScale(dataVel.slice(0,totalNum)[index + 100].x))
             .attr("y", 17 + heightScale(dataVel.slice(0,totalNum)[index + 100].y))
             .text("*").attr('font-size', '35px');
-// numer 3 --------------------------------------------------->right
+// numer 2 --------------------------------------------------->right
 canvas.append("g").attr("transform", "translate(" + graphXOffset + "," + graphYOffset + ")").attr("class", "circNnum")
             .append("text")
             .attr("text-anchor", "end")
             .attr("x", 3 + widthScale(dataVel.slice(0,totalNum)[index + 185].x))
             .attr("y", 5 + heightScale(dataVel.slice(0,totalNum)[index + 185].y))
-            .text("3");
+            .text("2");
 d3.selectAll(".circNnum").data([1,2,3,4,5,6])
             .attr("visibility", "hidden");
 //adding text------------->ds1

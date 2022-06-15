@@ -17,13 +17,13 @@ const loader = new THREE.GLTFLoader();
 
 class Plane{
     constructor(){
-        loader.load("../../Bernoulli/models/airplane/scene.gltf", (gltf) => {
+        loader.load("../../models/airplane/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(.008,.008,.008);
             gltf.scene.position.set(0, 2, 0);
             this.plane = gltf.scene;
         });
-        loader.load("../../Bernoulli/models/wing/scene.gltf", (gltf) => {
+        loader.load("../../models/wing/scene.gltf", (gltf) => {
             scene.add(gltf.scene);
             gltf.scene.scale.set(3.7,4.7,4.7);
             gltf.scene.position.set(3.5, 0.3, 2.3);
@@ -58,7 +58,7 @@ class Plane{
     }
     wingMoving(length){
         let len = (length - sliderRange[2])/(sliderRange[3] - sliderRange[2]);
-        let pos = {x: (-3.5 - 3.5)*len + (3.5),y:(-0.2 - 0.3)*len + 0.3,z: 2.3};
+        let pos = {x: (-3.5 - 3.5)*len + (3.5),y:(0.5 - 0.3)*len + 0.3,z: 2.3};
         let rotX = (87.9 - 78.7)*len + 78.7;
         let rotZ = (210)*len;
         let rotY = (177.9 - 188.8)*len + 188.8;
@@ -136,11 +136,13 @@ d3.select('.slider').on("input",function(){
         d3.select(".svgStuff").style("visibility","hidden");
     }
     else if(length > sliderRange[3] && length < sliderRange[4]){
+        plane.wingMoving(sliderRange[3]);
         setText(2);
         d3.select("#sliderWing").style("visibility","visible");
         d3.select(".svgStuff").style("visibility","hidden");
         airFoil.style("visibility", "hidden");
         d3.select(".switchContainer").style("visibility","hidden");
+        obstacleText.style("visibility", "hidden");
     }
     else{
         d3.select(".svgStuff").style("visibility","visible");

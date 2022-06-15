@@ -41,7 +41,20 @@ var completeData = [];
 var linearData = [];
 //create mass points---->distData is for curved stream dist=distnace between points, num=number of points
 // linearDist dist=distance between points and num= number of points
-let distData = [...Array(streamLen).keys()].map((d) => ({dist: (d+1)*20, num: parseInt((canvasWidth+100)/(d+1)/20)}));
+let distData = [...Array(streamLen).keys()].map((d) => {
+        let len = 0;
+        if(d==0 || d==11){
+                len = 60;
+        }
+        else if(d<5){
+                len = 5*d + 45;
+        }
+        else{
+                len = -11*d + 175;
+        }
+        return {dist: len, num: parseInt((canvasWidth+100)/len)};
+});
+console.log(distData);
 let linearDist = {dist: 60, num: parseInt((canvasWidth+100)/60)};
 let linearVelLength = 40;
 var fluidPointsObs = [];

@@ -57,33 +57,33 @@ var plotFluidVelocityLinear = canvas.append("g")
 // no obstacle
 var plotLinearStreamLine = canvas.append("g")
                 .selectAll(".plotLinearStreamline")
-                .data([linearData[5]])
+                .data([linearData[7]])
                 .enter()
                         .append("path")
                         .attr("class", "plotLinearStreamline")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // obsctacle
 var plotCompleteStreamLine = canvas.append("g")
                 .selectAll(".plotCompleteStreamline")
-                .data([completeData[5]])
+                .data([completeData[7]])
                 .enter()
                         .append("path")
                         .attr("class", "plotCompleteStreamline")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // text that says streamline
 var streamText = canvas.append("g")
                 .append("text")
                 .style("font-size", "2rem")
-                .attr("x", widthScale(completeData[5][50].x))
-                .attr("y", heightScale(completeData[5][50].y + 0.5))
+                .attr("x", widthScale(completeData[7][50].x))
+                .attr("y", heightScale(completeData[7][50].y + 0.5))
                 .attr("dy", ".35em")
                 .text( "Streamline").attr("font-weight", "bold")
                 .style("fill", "#035704").style("visibility", "hidden");
@@ -98,8 +98,8 @@ var plotLinearStreamLine2 = canvas.append("g")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // obsctacle
 var plotCompleteStreamLine2 = canvas.append("g")
                 .selectAll(".plotCompleteStreamline")
@@ -110,8 +110,8 @@ var plotCompleteStreamLine2 = canvas.append("g")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // text that says streamline
 var streamText2 = canvas.append("g")
                 .append("text")

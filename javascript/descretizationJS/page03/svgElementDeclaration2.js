@@ -73,7 +73,7 @@ var plotVelocity = canvas.append("g")
                 .attr("y2", d => heightScale(d.y2))
                 .attr("fill","none")
                 .attr("stroke", "green")
-                .attr("stroke-width", 2).style("opacity", "25%");
+                .attr("stroke-width", 2).style("opacity", "25%").attr("marker-end","url(#arrow)");
 //plot points
 var plotPoint = canvas.append("g")
         .attr("transform","translate(" + graphXOffset + "," + (graphYOffset) + ")")

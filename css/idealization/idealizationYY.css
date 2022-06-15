@@ -85,7 +85,7 @@ li{
     color: white;
 }
 .instru{
-    font-size: 2.4vh;
+    font-size: 2.0vh;
     margin: 20px;
     padding-top: 5px;
 }
@@ -202,4 +202,17 @@ input:checked + .slider2 {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
+  }
+
+  input[type=range]{
+    pointer-events: none;
+  }
+  input[type=range]::-webkit-slider-thumb{/*Webkit Browsers like Chrome and Safari*/
+    pointer-events: auto;
+  }
+  input[type=range]::-moz-range-thumb{/*Firefox*/
+    pointer-events: auto;
+  }
+  input[type=range]::-ms-thumb{/*Internet Explorer*/
+    pointer-events: auto;
   }

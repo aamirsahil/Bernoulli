@@ -95,7 +95,7 @@ function draw(){
     text('r1', widthScale(x[5]) + 5, heightScale(streamLineMid[5].y));
 // r2
     line(widthScale(x[totalNum-5]), heightScale(streamLineMid[totalNum-5].y), widthScale(x[totalNum-5]), heightScale(dataUpper[totalNum-5].y));
-    text('r1', widthScale(x[totalNum-5]) - 20, heightScale(streamLineMid[totalNum-5].y));}
+    text('r2', widthScale(x[totalNum-5]) - 20, heightScale(streamLineMid[totalNum-5].y));}
 
 
     // incSlider = createSlider(30, 100, 30);

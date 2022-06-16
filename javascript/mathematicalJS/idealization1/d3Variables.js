@@ -76,8 +76,8 @@ var plotCompleteStreamLine = canvas.append("g")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // text that says streamline
 var streamText = canvas.append("g")
                 .append("text")
@@ -98,26 +98,26 @@ var plotLinearStreamLine2 = canvas.append("g")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // obsctacle
 var plotCompleteStreamLine2 = canvas.append("g")
                 .selectAll(".plotCompleteStreamline")
-                .data([completeData[3]])
+                .data([completeData[1]])
                 .enter()
                         .append("path")
                         .attr("class", "plotCompleteStreamline")
                         .attr("d", line)
                         .attr("fill","none")
                         .attr("stroke", "green")
-                        .attr("stroke-width", 2)
-                        .attr("stroke-dasharray",3).style("visibility", "hidden");
+                        .attr("stroke-width", 5)
+                        .attr("stroke-dasharray",10).style("visibility", "hidden");
 // text that says streamline
 var streamText2 = canvas.append("g")
                 .append("text")
                 .style("font-size", "2rem")
-                .attr("x", widthScale(completeData[3][50].x))
-                .attr("y", heightScale(completeData[3][50].y + 0.5))
+                .attr("x", widthScale(completeData[2][50].x))
+                .attr("y", heightScale(completeData[2][50].y + 0.5))
                 .attr("dy", ".35em")
                 .text( "Streamline B").attr("font-weight", "bold")
                 .style("fill", "#035704").style("visibility", "hidden");
@@ -156,8 +156,8 @@ animate();
 var liftText = canvas.append("g")
                 .append("text")
                 .style("font-size", "2rem")
-                .attr("x", canvasWidth/2.2)
-                .attr("y", canvasHeight/2 + 70)
+                .attr("x", canvasWidth/2.9)
+                .attr("y", canvasHeight/2 + 40)
                 .attr("dy", ".15em")
                 .text( "Lift")
                 .style("fill", "black").style("visibility", "hidden");

@@ -51,7 +51,7 @@ function setPic(){
 }
 function setMarker(i){
     let markerState = [...Array(5).keys()].map((d) => (d<=i)?blueSel:greyUnCel);
-    for(let i=0;i<4;i++)
+    for(let i=0;i<5;i++)
             d3.select("#marker"+(i+2)).style("fill", markerState[i]);
 }
 
@@ -145,17 +145,36 @@ function createFluidPointsLinear(x0 = 0){
 return Array.prototype.concat.apply([], temp);
 }
 // create a set of streamLines
-function createFoilFlow(){
-    for( let a = -5; a<5; a += (a<0)?1:0.5){
-            if(a>-1 && a<1.5) 
-                    continue;
-            let sep = (a<0)?a/5:a/10;
-            let data = x.map( (d) => ({x: d, y: f(d, a, sep)}));
+// function createFoilFlow(){
+//     for( let a = -5; a<5; a += (a<0)?1:0.5){
+//             if(a>-1 && a<1.5) 
+//                     continue;
+//             let sep = (a<0)?a/5:a/10;
+//             let data = x.map( (d) => ({x: d, y: f(d, a, sep)}));
 
-            completeData.push(data);
+//             completeData.push(data);
+//     }
+// }
+function createFoilFlow(){
+    for( let a = 0; a<12; a += 1){
+        let data = [];
+        let sep = 0;
+        if(a==0 || a== 11){
+            sep = (a==0)?-5:5;
+            data = x.map((d) => ({x:d, y:sep}))
+        }
+        else if(a<5){
+            sep = -a/7;
+            data = x.map( (d) => ({x: d, y: f(d, -a, sep, -1, a)}));
+        }
+        else{
+            sep = (a<=6)?a/5:a/40;
+            let A = 5/8*a - 19/8
+            data = x.map( (d) => ({x: d, y: f(d, A, sep, -0.5, a-4)}));
+        }
+        completeData.push(data);
     }
 }
-
 function createLinearFlow(){
 for( let a = -5; a <= 6; a += 1){
         let data = x.map( (d) => ({x: d, y: a}));

@@ -68,6 +68,9 @@ function hideAll(){
 
     lift.style("visibility", "visible");
     liftText.style("visibility", "visible");
+    for(let i=0; i<12; i++){
+        plotCompleteStreamLines[i].style("visibility", "visible");
+    }
 }
 
 function resetAll(){
@@ -88,6 +91,9 @@ function resetAll(){
 
     lift.style("visibility", "hidden");
     liftText.style("visibility", "hidden");
+    for(let i=0; i<12; i++){
+        plotCompleteStreamLines[i].style("visibility", "hidden");
+    }
 }
 function animateStart(val){
     animateOn = val;

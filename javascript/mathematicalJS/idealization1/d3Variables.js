@@ -53,7 +53,23 @@ var plotFluidVelocityLinear = canvas.append("g")
                 .attr("fill","none")
                 .attr("stroke", "red")
                 .attr("stroke-width", 2).style("visibility", "hidden").attr("marker-end","url(#arrow)");
+
 //streamLine plots
+// all
+var plotCompleteStreamLines = [];
+for(let i=0; i<12; i++){
+        plotCompleteStreamLines[i] = canvas.append("g")
+        .selectAll(".plotCompleteStreamline")
+        .data([completeData[i]])
+        .enter()
+                .append("path")
+                .attr("class", "plotCompleteStreamline")
+                .attr("d", line)
+                .attr("fill","none")
+                .attr("stroke", "green")
+                .attr("stroke-width", 5)
+                .attr("stroke-dasharray",10).style("visibility", "hidden");
+}
 // no obstacle
 var plotLinearStreamLine = canvas.append("g")
                 .selectAll(".plotLinearStreamline")
